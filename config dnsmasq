@@ -1,0 +1,895 @@
+config dnsmasq
+	option domainneeded '1'
+	
+
+domainneeded:
+
+
+
+Tells dnsmasq never to forward queries for plain names, without dots or domain parts, to upstream nameservers. If the name is not known from /etc/hosts or DHCP then a “not found” answer is returned
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+
+
+
+
+
+boguspriv:
+
+
+Reject reverse lookups to private IP ranges where no corresponding entry exists in /etc/hosts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+
+
+
+
+
+
+filterwin2k:
+
+
+Do not forward requests that cannot be answered by public name servers.
+Make sure it is disabled if you need to resolve SRV records or use SIP phones.
+
+Later versions of windows make periodic DNS requests which don't get sensible answers from the public DNS and can cause problems by triggering dial-on-demand links. This flag turns on an option to filter such requests. The requests blocked are for records of type ANY where the requested name has underscores, to catch LDAP requests, and for all records of types SOA and SRV.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+
+
+
+
+
+localise_queries:
+
+
+Choose IP address to match the incoming interface if multiple addresses are assigned to a host name in /etc/hosts. Initially disabled, but still enabled in the config by default.
+
+
+Return answers to DNS queries from /etc/hosts and --interface-name and --dynamic-host which depend on the interface over which the query was received. If a name has more than one address associated with it, and at least one of those addresses is on the same subnet as the interface to which the query was sent, then return only the address(es) on that subnet and return all the available addresses otherwise. This allows for a server to have multiple addresses in /etc/hosts corresponding to each of its interfaces, and hosts will get the correct address based on which network they are attached to. Currently this facility is limited to IPv4.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+
+
+
+
+
+rebind_protection:
+
+
+Enables DNS rebind attack protection by discarding upstream RFC1918 responses
+
+
+
+When DNS rebinding attack protection is active the DNS Resolver strips private addresses from DNS responses. Additionally, the DNSSEC validator may mark the answers as bogus. This is handled automatically using a list of private-address directives maintained by the firewall.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+
+
+
+
+rebind_localhost:
+
+
+
+Allows upstream 127.0.0.0/8 responses, required for DNSbased blacklist services, only takes effect if rebind protection is enabled
+
+
+Exempt 127.0.0.0/8 and ::1 from rebinding checks. This address range is returned by realtime black hole servers, so blocking it may disable these services.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+
+
+
+
+local:
+
+
+
+Look up DNS entries for this domain from /etc/hosts. This follows the same syntax as server entries, see the man page.
+
+
+
+local and domain enable dnsmasq to serve entries in /etc/hosts, as well as DHCP client's names if configured under lan domain.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+
+
+
+domain:
+
+
+DNS domain handed out to DHCP clients
+
+
+
+Specifies DNS domains for the DHCP server. Domains may be given unconditionally (without the IP range) or for limited IP ranges. This has two effects; firstly it causes the DHCP server to return the domain to any hosts which request it, and secondly it sets the domain which it is legal for DHCP-configured hosts to claim. The intention is to constrain hostnames so that an untrusted host on the LAN cannot advertise its name via DHCP as e.g. "microsoft.com" and capture traffic not meant for it. If no domain suffix is specified, then any DHCP hostname with a domain part (ie with a period) will be disallowed and logged. If suffix is specified, then hostnames with a domain part are allowed, provided the domain part matches the suffix. In addition, when a suffix is set then hostnames without a domain part have the suffix added as an optional domain part. Eg on my network I can set --domain=thekelleys.org.uk and have a machine whose DHCP hostname is "laptop". The IP address for that machine is available from dnsmasq both as "laptop" and "laptop.thekelleys.org.uk". If the domain is given as "#" then the domain is read from the first "search" directive in /etc/resolv.conf (or equivalent).
+
+
+The address range can be of the form <ip address>,<ip address> or <ip address>/<netmask> or just a single <ip address>. See --dhcp-fqdn which can change the behaviour of dnsmasq with domains.
+If the address range is given as ip-address/network-size, then a additional flag "local" may be supplied which has the effect of adding --local declarations for forward and reverse DNS queries. Eg. --domain=thekelleys.org.uk,192.168.0.0/24, local is identical to --domain=thekelleys.org.uk, 192.168.0.0/24 --local=/thekelleys.org.uk/ --local=/0.168.192.in-addr.arpa/
+The address range can also be given as a network interface name, in which case all of the subnets currently assigned to the interface are used in matching the address. This allows hosts on different physical subnets to be given different domains in a way which updates automatically as the interface addresses change.
+
+
+
+
+local and domain enable dnsmasq to serve entries in /etc/hosts, as well as DHCP client's names if configured under lan domain.
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+
+
+
+
+
+expandhosts:
+
+
+Add the local domain part to names found in /etc/hosts
+
+
+Add the domain to simple names (without a period) in /etc/hosts in the same way as for DHCP-derived names. Note that this does not apply to domain names in cnames, PTR records, TXT records etc.
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '0'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+
+
+
+
+nonegcache:
+
+
+Disable caching of negative “no such domain” responses
+
+
+Disable negative caching. Negative caching allows dnsmasq to remember "no such domain" answers from upstream nameservers and answer identical queries without forwarding them again.
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+
+
+
+cachesize:
+
+
+Size of dnsmasq query cache.
+
+
+Set the size of dnsmasq's cache. The default is 150 names. Setting the cache size to zero disables caching. Note: huge cache size impacts performance.
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+
+
+
+authoritative:
+
+
+Force dnsmasq into authoritative mode. This speeds up DHCPleasing. Used if this is the only server on the network
+
+
+Should be set when dnsmasq is definitely the only DHCP server on a network. For DHCPv4, it changes the behaviour from strict RFC compliance so that DHCP requests on unknown leases from unknown hosts are not ignored. This allows new hosts to get a lease without a tedious timeout under all circumstances. It also allows dnsmasq to rebuild its lease database without each client needing to reacquire a lease, if the database is lost. For DHCPv6 it sets the priority in replies to 255 (the maximum) instead of 0 (the minimum).
+
+makes router the only DHCP server on this network; clients get their IP lease a lot faster this way.
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+
+
+
+
+
+
+
+readethers:
+
+
+Read static lease entries from /etc/ethers, re-read on SIGHUP
+
+
+Read /etc/ethers for information about hosts for the DHCP server. The format of /etc/ethers is a hardware address, followed by either a hostname or dotted-quad IP address. When read by dnsmasq these lines have exactly the same effect as --dhcp-host options containing the same information. /etc/ethers is re-read when dnsmasq receives SIGHUP. IPv6 addresses are NOT read from /etc/ethers.
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	
+
+
+ leasefile:
+
+
+
+Store DHCP leases in this file
+
+stores leases in a file so they can be picked up again if dnsmasq is restarted
+
+
+<expiry> <MAC> <IP> <hostname> <clientid>
+
+date -d @1751218464
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+
+
+
+
+
+resolvfile:
+
+
+Specifies an alternative resolv file
+
+tells dnsmasq to use this file to find upstream name servers; it gets created by the WAN DHCP or PPP client.
+
+nano /tmp/resolv.conf.d/resolv.conf.auto
+
+
+nameserver 103.86.96.103
+nameserver 103.86.99.103
+
+
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+
+
+nonwildcard:
+
+
+Bind only configured interface addresses, instead of the wildcard address.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+	option localservice '1'
+
+
+
+
+
+localservice: 
+
+Accept DNS queries only from hosts whose address is on a local subnet, ie a subnet for which an interface exists on the server.
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+	option localservice '1'
+	option ednspacket_max '1232'
+
+
+
+ednspacket_max:
+
+Specify the largest EDNS.0 UDP packet which is supported by the DNS forwarder
+
+
+Specify the largest EDNS.0 UDP packet which is supported by the DNS forwarder. Defaults to 1232, which is the recommended size following the DNS flag day in 2020. Only increase if you know what you are doing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+	option localservice '1'
+	option ednspacket_max '1232'
+	option filter_aaaa '0'
+
+
+
+
+
+filter_aaaa:
+
+
+Remove AAAA records from answers. No IPv6 addresses will be returned.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+	option localservice '1'
+	option ednspacket_max '1232'
+	option filter_aaaa '0'
+	option filter_a '0'
+
+
+
+
+filter_a:
+
+
+Remove A records from answers. No IPv4 addresses will be returned
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+	option localservice '1'
+	option ednspacket_max '1232'
+	option filter_aaaa '0'
+	option filter_a '0'
+	option serverlist '/etc/dnsmasq.servers'
+
+
+serverlist:
+
+Specify upstream servers directly. If one or more optional domains are given, that server is used only for those domains and they are queried only using the specified server. Syntax is server=/*.mydomain.tld/192.168.100.1 or see the dnsmasq man page for details.
+
+server=/*.mydomain.tld/192.168.100.1
+server=8.8.8.8
+server=1.1.1.1
+
+
+server=103.86.96.103
+server=103.86.99.103
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+	option localservice '1'
+	option ednspacket_max '1232'
+	option filter_aaaa '0'
+	option filter_a '0'
+	option serverlist '/etc/dnsmasq.servers'
+	option dnssec '1'
+
+
+
+dnssec:
+
+Validate DNS replies and cache DNSSEC data. Requires the dnsmasq-full package. Please note that many applications now require DNSSEC to work properly, e.g. Google apps on iOS like Gmail and Google Maps, and Windows Update and Windows Account activation on windows PCs.
+
+Validate DNS replies and cache DNSSEC data. When forwarding DNS queries, dnsmasq requests the DNSSEC records needed to validate the replies. The replies are validated and the result returned as the Authenticated Data bit in the DNS packet. In addition the DNSSEC records are stored in the cache, making validation by clients more efficient. Note that validation by clients is the most secure DNSSEC mode, but for clients unable to do validation, use of the AD bit set by dnsmasq is useful, provided that the network between the dnsmasq server and the client is trusted. Dnsmasq must be compiled with HAVE_DNSSEC enabled, and DNSSEC trust anchors provided, see --trust-anchor. Because the DNSSEC validation process uses the cache, it is not permitted to reduce the cache size below the default when DNSSEC is enabled. The nameservers upstream of dnsmasq must be DNSSEC-capable, ie capable of returning DNSSEC records with data. If they are not, then dnsmasq will not be able to determine the trusted status of answers and this means that DNS service will be entirely broken.
+
+
+
+
+
+
+
+
+
+config dnsmasq
+	option domainneeded '1'
+	option boguspriv '1'
+	option filterwin2k '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '0'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option nonegcache '0'
+	option cachesize '150'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+	option localservice '1'
+	option ednspacket_max '1232'
+	option filter_aaaa '0'
+	option filter_a '0'
+	option serverlist '/etc/dnsmasq.servers'
+	option noresolv '1'
+	option dnssec '1'
+
+
+
+
+noresolv:
+
+Don't read upstream servers from /etc/resolv.conf which is linked to resolvfile by default
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
