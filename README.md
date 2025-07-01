@@ -1,2 +1,2 @@
 # OpenWRT
-Into the Willd
+Into the Wild
