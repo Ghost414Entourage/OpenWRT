@@ -1,0 +1,19 @@
+config dhcp 'lan'
+	option interface 'lan'
+	option start '100'
+	option limit '150'
+	option leasetime '12h'
+	option dhcpv4 'server'
+	option dhcpv6 'disabled'
+	option ra 'disabled'
+	option ra_slaac '0'
+	list dhcp_option '6,103.86.96.103,103.86.99.103'
+	list dhcp_option_force '6,103.86.96.103,103.86.99.103'
+
+
+
+
+
+
+
+
