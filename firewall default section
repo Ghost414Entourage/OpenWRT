@@ -1,0 +1,461 @@
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enable TCP window scaling: The tcp receive window (RWin) size is the amount of received data (in bytes) that can be buffered during a connection. The sending host can send only that amount of data before it must wait for an acknowledgment and window update from the receiving host. For more efficient use of high bandwidth networks, a larger TCP window size may be used. However, the TCP window size field controls the flow of data and is limited to 2 bytes, or a window size of 65535 bytes. Since the size field cannot be expanded, a scaling factor is used. TCP window scaling is a kernel option of the TCP/IP stack and can be used to increase the maximum window size from 65535 bytes to 1 Gigabyte. Window scaling is enabled by default. However, since some network devices such as routers, load balancers, gateways, and so on still do not fully support window scaling, depending on your environment it might be necessary to turn it off.
+
+
+Source: https://docs.sophos.com/nsg/sophos-utm/utm/9.708/help/en-us/Content/utm/utmAdminGuide/NetProtFirewallAdvanced.htm
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option disable_ipv6 '1'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option custom_chains '1'
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option custom_chains '1'
+	option flow_offloading '0'
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option custom_chains '1'
+	option flow_offloading '0'
+	option flow_offloading_hw '0'
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option custom_chains '1'
+	option flow_offloading '0'
+	option flow_offloading_hw '0'
+	option tcp_reject_code '1'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option flow_offloading '0'
+	option flow_offloading_hw '0'
+	option tcp_reject_code '0'
+	option any_reject_code '1'
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option flow_offloading '0'
+	option flow_offloading_hw '0'
+	option tcp_reject_code '0'
+	option any_reject_code '1'
+	option auto_helper '0'
+
+
+
+
+
+So-called connection tracking helpers enable protocols that use multiple network connections to work with firewall or NAT rules. All connections handled by the firewall are tracked by the conntrack kernel module, a process better known as connection tracking. Some protocols such as ftp and irc require several ports to be opened, and hence require special connection tracking helpers supporting them to operate correctly. These helpers are special kernel modules that help identify additional connections by marking them as being related to the initial connection, usually by reading the related addresses out of the data stream.
+
+
+Source: https://docs.sophos.com/nsg/sophos-utm/utm/9.708/help/en-us/Content/utm/utmAdminGuide/NetProtFirewallAdvanced.htm
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option flow_offloading '0'
+	option flow_offloading_hw '0'
+	option tcp_reject_code '0'
+	option any_reject_code '1'
+	option auto_helper '1'
+	option auto_includes '1'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option flow_offloading '0'
+	option flow_offloading_hw '0'
+	option auto_helper '1'
+	option auto_includes '1'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
