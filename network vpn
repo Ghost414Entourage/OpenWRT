@@ -1,0 +1,341 @@
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+# LAN bridge - includes all four physical LAN ports
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
+
+# LAN interface - router's internal IP and DNS (NordVPN)
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+# WAN interface - gets internet from ISP (AT&T, etc.)
+config interface 'wan'
+	option device 'wan'
+	option proto 'dhcp'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+# Disable IPv6 entirely on WAN
+config interface 'wan6'
+	option device 'wan'
+	option proto 'none'
+
+# VPN tunnel interface
+config interface 'nordvpntun'
+	option proto 'none'
+	option device 'tun0'
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+config interface 'loopback'
+    option device 'lo'
+    option proto 'static'
+    option ipaddr '127.0.0.1'
+    option netmask '255.0.0.0'
+
+# IPv6 ULA prefix removed — not needed
+# config globals 'globals'
+#     option ula_prefix 'fd17:46e2:78a::/48'
+
+config device
+    option name 'br-lan'
+    option type 'bridge'
+    list ports 'lan1'
+    list ports 'lan2'
+    list ports 'lan3'
+    list ports 'lan4'
+
+config interface 'lan'
+    option device 'br-lan'
+    option proto 'static'
+    option ipaddr '192.168.1.1'
+    option netmask '255.255.255.0'
+    list dns '103.86.96.103'
+    list dns '103.86.99.103'
+
+config interface 'wan'
+    option device 'wan'
+    option proto 'dhcp'
+    option peerdns '0'
+    list dns '103.86.96.103'
+    list dns '103.86.99.103'
+
+# IPv6 on WAN fully disabled
+# config interface 'wan6'
+#     option device 'wan'
+#     option proto 'dhcpv6'
+
+config interface 'nordvpntun'
+    option proto 'none'
+    option device 'tun0'
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+	option ipv6 '0'
+
+config globals 'globals'
+	option ula_prefix 'fd40:85cc:da11::/48'
+	option packet_steering '1'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option delegate '0'
+	option ipv6 '0'
+
+config interface 'wan'
+	option device 'wan'
+	option proto 'dhcp'
+	option ipv6 '0'
+	option norelease '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan6'
+	option device 'wan'
+	option proto 'dhcpv6'
+	option ipv6 '0'
+	option delegate '0'
+	option ip6assign '0'
+	option disabled '1'
+	option reqaddress 'none'
+	option reqprefix 'no'
+	option norelease '1'
+
+config interface 'nordvpntun'
+	option proto 'none'
+	option device 'tun0'
+	option ipv6 '0'
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+	option ipv6 '0'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option delegate '0'
+	option ipv6 '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan'
+	option device 'wan'
+	option proto 'dhcp'
+	option ipv6 '0'
+	option norelease '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan6'
+	option device 'wan'
+	option proto 'dhcpv6'
+	option ipv6 '0'
+	option delegate '0'
+	option ip6assign '0'
+	option disabled '1'
+	option reqaddress 'none'
+	option reqprefix 'no'
+	option norelease '1'
+
+config interface 'nordvpntun'
+	option proto 'none'
+	option device 'tun0'
+	option ipv6 '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+	option ipv6 '0'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option delegate '0'
+	option ipv6 '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan'
+	option device 'wan'
+	option proto 'dhcp'
+	option ipv6 '0'
+	option norelease '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan6'
+	option device 'wan'
+	option proto 'dhcpv6'
+	option ipv6 '0'
+	option delegate '0'
+	option ip6assign '0'
+	option disabled '1'
+	option reqaddress 'none'
+	option reqprefix 'no'
+	option norelease '1'
+
+config interface 'nordvpntun'
+	option proto 'none'
+	option device 'tun0'
+	option ipv6 '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+	option ipv6 '0'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option delegate '0'
+	option ipv6 '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan'
+	option device 'wan'
+	option proto 'dhcp'
+	option ipv6 '0'
+	option norelease '0'
+	option peerdns '0'
+	option metric '20'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan6'
+	option device 'wan'
+	option proto 'dhcpv6'
+	option ipv6 '0'
+	option delegate '0'
+	option ip6assign '0'
+	option disabled '1'
+	option reqaddress 'none'
+	option reqprefix 'no'
+	option norelease '1'
+
+config interface 'nordvpntun'
+	option proto 'none'
+	option device 'tun0'
+	option ipv6 '0'
+	option peerdns '0'
+	option metric '10'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/etc/init.d/network reload
+
+/etc/init.d/network restart
+
+
+
+
+
+
+
+
+
