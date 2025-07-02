@@ -509,6 +509,13 @@ nameserver 8.8.8.8
 
 
 
+echo -e "server=103.86.96.103\nserver=103.86.99.103" > /etc/dnsmasq.servers
+
+
+echo -e "nameserver 103.86.96.103\nnameserver 103.86.99.103" > /etc/dnsmasq.servers
+
+
+
 
 
 
