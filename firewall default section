@@ -12,7 +12,7 @@ config defaults
 	option drop_invalid '1'
 
 
-
+Drop invalid packets (e.g. not matching any active connection).
 
 
 
