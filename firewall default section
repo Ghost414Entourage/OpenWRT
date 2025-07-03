@@ -26,6 +26,28 @@ config defaults
 
 
 
+Enable SYN flood protection.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option synflood_protect '1'
+	option syn_flood '1' 
+
+
+Enable SYN flood protection (obsoleted by synflood_protect setting).
+
+
+
+
+
+
+
+
+
 
 
 
@@ -36,6 +58,7 @@ config defaults
 	option forward 'REJECT'
 	option drop_invalid '1'
 	option synflood_protect '1'
+	option syn_flood '1'
 	option synflood_rate '25/s'
 
 
@@ -51,6 +74,7 @@ config defaults
 	option forward 'REJECT'
 	option drop_invalid '1'
 	option synflood_protect '1'
+	option syn_flood '1'
 	option synflood_rate '25/s'
 	option synflood_burst '50'
 
@@ -67,6 +91,7 @@ config defaults
 	option forward 'REJECT'
 	option drop_invalid '1'
 	option synflood_protect '1'
+	option syn_flood '1'
 	option synflood_rate '25/s'
 	option synflood_burst '50'
 	option tcp_ecn '1'
@@ -102,12 +127,11 @@ config defaults
 	option forward 'REJECT'
 	option drop_invalid '1'
 	option synflood_protect '1'
+	option syn_flood '1'
 	option synflood_rate '25/s'
 	option synflood_burst '50'
 	option tcp_ecn '1'
 	option tcp_syncookies '1'
-
-
 
 
 
@@ -121,34 +145,13 @@ config defaults
 	option forward 'REJECT'
 	option drop_invalid '1'
 	option synflood_protect '1'
+	option syn_flood '1'
 	option synflood_rate '25/s'
 	option synflood_burst '50'
 	option tcp_ecn '1'
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-config defaults
-	option input 'REJECT'
-	option output 'ACCEPT'
-	option forward 'REJECT'
-	option drop_invalid '1'
-	option synflood_protect '1'
-	option synflood_rate '25/s'
-	option synflood_burst '50'
-	option tcp_ecn '1'
-	option tcp_syncookies '1'
-	option tcp_window_scaling '1'
-	option accept_redirects '0'
+	
 
 
 
@@ -175,8 +178,8 @@ config defaults
 	option output 'ACCEPT'
 	option forward 'REJECT'
 	option drop_invalid '1'
-	option syn_flood '1'
 	option synflood_protect '1'
+	option syn_flood '1'
 	option synflood_rate '25/s'
 	option synflood_burst '50'
 	option tcp_ecn '1'
@@ -241,6 +244,7 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
 
 
@@ -261,6 +265,7 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
 	option custom_chains '1'
 	
@@ -287,6 +292,7 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
 	option custom_chains '1'
 	option flow_offloading '0'
@@ -317,6 +323,7 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
 	option custom_chains '1'
 	option flow_offloading '0'
@@ -344,6 +351,7 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
 	option custom_chains '1'
 	option flow_offloading '0'
@@ -374,7 +382,9 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
+	option custom_chains '1'
 	option flow_offloading '0'
 	option flow_offloading_hw '0'
 	option tcp_reject_code '0'
@@ -398,14 +408,18 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
+	option custom_chains '1'
 	option flow_offloading '0'
 	option flow_offloading_hw '0'
 	option tcp_reject_code '0'
 	option any_reject_code '1'
-	option auto_helper '0'
+	option auto_helper '1'
 
 
+
+Enable Conntrack helpers
 
 
 
@@ -431,7 +445,9 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
+	option custom_chains '0'
 	option flow_offloading '0'
 	option flow_offloading_hw '0'
 	option tcp_reject_code '0'
@@ -440,6 +456,10 @@ config defaults
 	option auto_includes '1'
 
 
+
+
+
+(fw4 only, 22.03 and later) Enable automatic nftables includes under /usr/share/nftables.d/
 
 
 
@@ -459,9 +479,13 @@ config defaults
 	option tcp_syncookies '1'
 	option tcp_window_scaling '1'
 	option accept_redirects '0'
+	option disable_ipv6 '1'
 	option accept_source_route '0'
+	option custom_chains '0'
 	option flow_offloading '0'
 	option flow_offloading_hw '0'
+	option tcp_reject_code '0'
+	option any_reject_code '1'
 	option auto_helper '1'
 	option auto_includes '1'
 
