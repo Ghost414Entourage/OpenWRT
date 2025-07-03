@@ -34,6 +34,9 @@ config defaults
 
 Enable SYN flood protection.
 
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 config defaults
 	option input 'REJECT'
@@ -67,6 +70,8 @@ config defaults
 	option syn_flood '1'
 	option synflood_rate '25/s'
 
+Set rate limit (packets/second) for SYN packets above which the traffic is considered a flood.
+
 
 
 
@@ -84,6 +89,8 @@ config defaults
 	option synflood_rate '25/s'
 	option synflood_burst '50'
 
+
+Set burst limit for SYN packets above which the traffic is considered a flood if it exceeds the allowed rate.
 
 
 
@@ -141,6 +148,14 @@ config defaults
 
 
 
+Enable the use of SYN cookies.
+
+SYN cookie is a technique used to resist SYN flood attacks.
+
+
+SYN cookies allows a server to avoid dropping connections when the SYN queue fills up. Instead of storing additional connections, a SYN queue entry is encoded into the sequence number sent in the SYN+ACK response. If the server then receives a subsequent ACK response from the client with the incremented sequence number, the server is able to reconstruct the SYN queue entry using information encoded in the TCP sequence number and proceed as usual with the connection.
+
+To initiate a TCP connection, the client sends a TCP SYN packet to the server. The server responds with a TCP SYN+ACK packet, which includes a sequence number used by TCP to reassemble the data stream. According to the TCP specification, the initial sequence number sent by an endpoint can be any value chosen by that endpoint. Since this sequence number is chosen by the sender, returned by the recipient, and has no predefined internal structure, it can be overloaded to carry additional data. The following outlines one possible implementation, though there is no public standard, so the order, length, and semantics of the fields may vary between SYN cookie implementations.
 
 
 
@@ -164,9 +179,9 @@ config defaults
 
 
 
+Enable window scaling as defined in RFC1323
 
-
-
+The TCP window scale option is an option to increase the receive window size allowed in Transmission Control Protocol above its former maximum value of 65,535 bytes.
 
 
 
@@ -178,6 +193,12 @@ Source: https://docs.sophos.com/nsg/sophos-utm/utm/9.708/help/en-us/Content/utm/
 
 
 
+
+The throughput of a TCP communication is limited by two windows: the congestion window and the receive window. The congestion window tries not to exceed the capacity of the network (congestion control); the receive window tries not to exceed the capacity of the receiver to process data (flow control). The receiver may be overwhelmed by data if for example it is very busy (such as a Web server). Each TCP segment contains the current value of the receive window. If, for example, a sender receives an ACK which acknowledges byte 4000 and specifies a receive window of 10000 (bytes), the sender will not send packets after byte 14000, even if the congestion window allows it.
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 config defaults
 	option input 'REJECT'
@@ -195,12 +216,32 @@ config defaults
 
 
 
+Accepts redirects. Implemented upstream in Linux Kernel. 
+
+BOOLEAN:
+
+Accept ICMP redirect messages. accept_redirects for the interface will be enabled if:
+
+both conf/{all,interface}/accept_redirects are TRUE in the case forwarding for the interface is enabled
+or
+
+at least one of conf/{all,interface}/accept_redirects is TRUE in the case forwarding for the interface is disabled
+accept_redirects for the interface will be disabled otherwise
+
+default:
+
+TRUE (host)
+FALSE (router)
 
 
 
 
+Accept Redirects.
 
+Functional default:
 
+enabled if local forwarding is disabled.
+disabled if local forwarding is enabled.
 
 
 
@@ -226,9 +267,18 @@ config defaults
 
 
 
+Disable IPv6 firewall rules. 
 
 
+BOOLEAN:
 
+Disable IPv6 operation. If accept_dad is set to 2, this value will be dynamically set to TRUE if DAD fails for the link-local address.
+
+Default: FALSE (enable IPv6 operation)
+
+When this value is changed from 1 to 0 (IPv6 is being enabled), it will dynamically create a link-local address on the given interface and start Duplicate Address Detection, if necessary.
+
+When this value is changed from 0 to 1 (IPv6 is being disabled), it will dynamically delete all addresses and routes on the given interface. From now on it will not possible to add addresses/routes to the selected interface.
 
 
 
@@ -254,6 +304,22 @@ config defaults
 	option accept_source_route '0'
 
 
+
+
+Implemented upstream in Linux Kernel.
+
+BOOLEAN:
+
+Accept packets with SRR option. conf/all/accept_source_route must also be set to TRUE to accept packets with SRR option on the interface
+
+
+INTEGER:
+
+Accept source routing (routing extension header).
+
+>= 0: Accept only routing header type 2.
+< 0: Do not accept routing header.
+Default: 0
 
 
 
@@ -278,7 +344,7 @@ config defaults
 
 
 
-
+Enable generation of custom rule chain hooks for user generated rules. User rules would be typically stored in firewall.user but some packages e.g. BCP38 also make use of these hooks.
 
 
 
@@ -305,7 +371,7 @@ config defaults
 	
 
 
-
+Enable software flow offloading for connections. (decrease cpu load / increase routing throughput)
 
 
 
@@ -337,6 +403,7 @@ config defaults
 	
 	
 
+Enable hardware flow offloading for connections. (depends on flow_offloading and hw capability)
 
 
 
@@ -362,8 +429,12 @@ config defaults
 	option custom_chains '1'
 	option flow_offloading '0'
 	option flow_offloading_hw '0'
-	option tcp_reject_code '1'
+	option tcp_reject_code '0'
 
+
+
+
+Defined in firewall3/options.h. Seems to determine method of packet rejection; (tcp reset, or drop, vs ICMP Destination Unreachable, or closed)
 
 
 
@@ -397,6 +468,10 @@ config defaults
 	option any_reject_code '1'
 		
 
+
+
+
+Defined in firewall3/options.h. Seems to determine method of packet rejection; (tcp reset, or drop, vs ICMP Destination Unreachable, or closed)
 
 
 
