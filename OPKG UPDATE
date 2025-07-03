@@ -1,0 +1,237 @@
+
+opkg list-upgradable | awk '{print $1}' | xargs opkg upgrade
+
+opkg list-upgradable | awk '{print $1}' | xargs -r opkg upgrade
+
+opkg list-upgradable | cut -f 1 -d ' ' | xargs opkg upgrade
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////////////////////////////////
+
+
+
+opkg list-upgradable > upgradable_packages.txt
+
+#!/bin/sh
+
+# Read each line in the file
+while IFS= read -r line; do
+    # Extract the package name (first column)
+    pkg_name=$(echo $line | awk '{print $1}')
+    # Upgrade the package
+    opkg upgrade $pkg_name
+done < upgradable_packages.txt
+
+
+chmod +x upgrade_packages.sh
+
+./upgrade_packages.sh
+
+
+
+
+cat << 'EOF' > upgradable_packages.txt
+#!/bin/sh
+
+# Read each line in the file
+while IFS= read -r line; do
+    # Extract the package name (first column)
+    pkg_name=$(echo $line | awk '{print $1}')
+    # Upgrade the package
+    opkg upgrade $pkg_name
+done < upgradable_packages.txt
+EOF
+
+
+
+
+
+
+echo '#!/bin/sh
+
+# Step 1: List upgradable packages and save to a file
+opkg list-upgradable | awk '\''{print $1}'\'' > upgradable_packages.txt
+
+# Step 2: Read the file and upgrade each package
+while read -r package; do
+    opkg upgrade "$package"
+done < upgradable_packages.txt' > upgrade_packages.sh
+
+
+
+chmod +x upgrade_packages.sh
+./upgrade_packages.sh
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////////////////////////////////
+
+
+sudo networksetup -setmanual Wi-Fi 192.168.1.10 255.255.255.0 192.168.1.1
+
+sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 8.8.8.8
+
+networksetup -getinfo Wi-Fi
+
+networksetup -getdnsservers Wi-Fi
+
+sudo networksetup -setdhcp Wi-Fi
+
+
+ifstatus wan
+ifstatus wan6
+
+
+
+
+
+
+
+
+
+sudo nmap -sT -sU -p 1-65535 localhost
+
+sudo nmap -sT -sU -p U:1-65535,T:1-65535 localhost
+
+sudo nmap -sT -sU -p U:1-65535,T:1-65535 127.0.0.1
+
+sudo nmap -6 -sT -sU -p U:1-65535,T:1-65535 ::1
+
+nmap --iflist
+
+
+
+
+echo 1 > /proc/sys/net/ipv6/conf/br-lan/disable_ipv6
+
+opkg install nft-qos nftables-nojson arptables-nft banip cni-plugins-nft ebtables-nft ip6tables-nft iptables-nft kmod-nft-arp kmod-nft-bridge kmod-nft-compat kmod-nft-connlimit kmod-nft-dup-inet kmod-nft-netdev kmod-nft-queue kmod-nft-socket kmod-nft-tproxy kmod-nft-xfrm libiptext-nft0 libreswan-nftables luci-app-nft-qos
+
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+opkg update
+opkg remove dnsmasq
+opkg install dnsmasq-full
+opkg update
+opkg install openvpn-openssl
+opkg install ip-full
+opkg install luci-app-openvpn
+opkg install nano curl sudo 
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////////////////////////////////
+opkg update && opkg install owut
+
+
+
+cd /tmp
+wget https://downloads.openwrt.org/releases/24.10.2/targets/mediatek/filogic/openwrt-24.10.2-mediatek-filogic-cudy_wr3000s-v1-squashfs-sysupgrade.bin
+
+sha256sum openwrt-24.10.2-mediatek-filogic-cudy_wr3000s-v1-squashfs-sysupgrade.bin
+
+sysupgrade /tmp/openwrt-24.10.2-mediatek-filogic-cudy_wr3000s-v1-squashfs-sysupgrade.bin
+
+sysupgrade -n /tmp/openwrt-24.10.2-mediatek-filogic-cudy_wr3000s-v1-squashfs-sysupgrade.bin
+
+
+
+owut upgrade \
+  --image https://downloads.openwrt.org/releases/24.10.2/targets/mediatek/filogic/openwrt-24.10.2-mediatek-filogic-cudy_wr3000s-v1-squashfs-sysupgrade.bin \
+  --checksum 4f7a8bcd9ba5b6bd479450819abce4e34da5e27a77f94b9f3390a320810c8949
+
+
+owut upgrade \
+  --image https://downloads.openwrt.org/releases/24.10.2/targets/mediatek/filogic/openwrt-24.10.2-mediatek-filogic-cudy_wr3000s-v1-squashfs-sysupgrade.bin \
+  --checksum 4f7a8bcd9ba5b6bd479450819abce4e34da5e27a77f94b9f3390a320810c8949 \
+  --reset
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////////////////////////////////
+
+cat /etc/os-release
+
+ubus call system board
+
+
+
+sudo find / -iname "*nftables*" 2>/dev/null
+sudo find / -iname "*nftable*" 2>/dev/null
+sudo find / -iname "*nft*" 2>/dev/null
+sudo find / -iname "*firewall*" 2>/dev/null
+
+
+sudo find / \( -iname '*nft*' -o -iname '*nftable*' -o -iname '*nftables*' \) 2>/dev/null
+
+find / -iname "*nftables*" -o -iname "*nft*" -o -iname "*nftable*"
+
+
+
+sudo find / -type f -o -type d \( -iname '*nft*' -o -iname '*nftable*' -o -iname '*nftables*' \) 2>/dev/null
+
+
+sudo find / \( -iname "*nftables*" -o -iname "*nftable*" -o -iname "*nft*" \) 2>/dev/null
+
+sudo find / \( -name "*nftables*" -o -name "*nftable*" -o -name "*nft*" \) 2>/dev/null
+
+
+
+
+
+
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////////////////////////////////
+
+nano create_nft_rules.sh
+
+
+#!/bin/bash
+
+# Define the output file
+output_file="nft_rules.sh"
+
+# Clear the output file if it already exists
+> "$output_file"
+
+# Loop through each port from 1 to 65535
+for port in {1..65535}; do
+    # Append the TCP and UDP rules for the current port to the output file
+    echo "nft add rule inet fw4 prerouting tcp dport $port counter drop comment \"Block_TCP_${port}_in_prerouting\"" >> "$output_file"
+    echo "nft add rule inet fw4 prerouting udp dport $port counter drop comment \"Block_UDP_${port}_in_prerouting\"" >> "$output_file"
+done
+
+# Make the output file executable
+chmod +x "$output_file"
+
+echo "Commands have been written to $output_file"
+
+
+
+chmod +x create_nft_rules.sh
+
+
+
+./create_nft_rules.sh
+
+
+
+
+
+
+
+
