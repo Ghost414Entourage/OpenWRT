@@ -1,0 +1,3 @@
+sudo nft add rule inet fw4 prerouting tcp dport 443 counter drop
+
+sudo nft add rule inet fw4 prerouting udp dport 443 counter drop
