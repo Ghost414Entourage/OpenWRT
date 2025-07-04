@@ -1,0 +1,351 @@
+## The firewall4 input, forward and output chains are registered with
+## priority `filter` (0).
+
+
+## Uncomment the chains below if you want to stage rules *before* the
+## default firewall input, forward and output chains.
+
+# chain user_pre_input {
+#     type filter hook input priority -1; policy accept;
+#     tcp dport ssh ct state new log prefix "SSH connection attempt: "
+# }
+#
+# chain user_pre_forward {
+#     type filter hook forward priority -1; policy accept;
+# }
+#
+# chain user_pre_output {
+#     type filter hook output priority -1; policy accept;
+# }
+
+
+## Uncomment the chains below if you want to stage rules *after* the
+## default firewall input, forward and output chains.
+
+# chain user_post_input {
+#     type filter hook input priority 1; policy accept;
+#     ct state new log prefix "Firewall4 accepted ingress: "
+# }
+#
+# chain user_post_forward {
+#     type filter hook forward priority 1; policy accept;
+#     ct state new log prefix "Firewall4 accepted forward: "
+# }
+#
+# chain user_post_output {
+#     type filter hook output priority 1; policy accept;
+#     ct state new log prefix "Firewall4 accepted egress: "
+# }
+
+
+
+
+****************************************************************************************************************************************************************************************************************
+> /etc/nftables.d/10-custom-filter-chains.nft
+
+truncate -s 0 /etc/nftables.d/10-custom-filter-chains.nft
+
+echo -n > /etc/nftables.d/10-custom-filter-chains.nft
+
+
+****************************************************************************************************************************************************************************************************************
+
+
+## The firewall4 input, forward and output chains are registered with
+## priority `filter` (0).
+
+## Chains to stage rules *before* the default firewall input, forward and output chains.
+
+chain user_pre_input {
+    type filter hook prerouting priority -1; policy accept;
+
+    tcp dport { 1-21 } drop
+    tcp dport { 23-52 } drop
+    tcp dport { 54-66 } drop
+    tcp dport { 69-79 } drop
+    tcp dport { 81-442 } drop
+    tcp dport { 444-499 } drop
+    tcp dport { 501-1079 } drop
+    tcp dport { 1081-1193 } drop
+    tcp dport { 1195-4499 } drop
+    tcp dport { 4501-7546 } drop
+    tcp dport { 7548-10000 } drop
+    tcp dport { 10001-30000 } drop
+    tcp dport { 61002-65535 } drop
+
+    udp dport { 1-21 } drop
+    udp dport { 23-52 } drop
+    udp dport { 54-66 } drop
+    udp dport { 69-79 } drop
+    udp dport { 81-442 } drop
+    udp dport { 444-499 } drop
+    udp dport { 501-1079 } drop
+    udp dport { 1081-1193 } drop
+    udp dport { 1195-4499 } drop
+    udp dport { 4501-7546 } drop
+    udp dport { 7548-10000 } drop
+    udp dport { 10001-30000 } drop
+    udp dport { 61002-65535 } drop
+}
+
+chain user_pre_forward {
+    type filter hook forward priority -1; policy accept;
+}
+
+chain user_pre_output {
+    type filter hook output priority -1; policy accept;
+}
+
+## Chains to stage rules *after* the default firewall input, forward and output chains.
+
+chain user_post_input {
+    type filter hook prerouting priority 1; policy accept;
+
+    tcp dport { 1-21 } drop
+    tcp dport { 23-52 } drop
+    tcp dport { 54-66 } drop
+    tcp dport { 69-79 } drop
+    tcp dport { 81-442 } drop
+    tcp dport { 444-499 } drop
+    tcp dport { 501-1079 } drop
+    tcp dport { 1081-1193 } drop
+    tcp dport { 1195-4499 } drop
+    tcp dport { 4501-7546 } drop
+    tcp dport { 7548-10000 } drop
+    tcp dport { 10001-30000 } drop
+    tcp dport { 61002-65535 } drop
+
+    udp dport { 1-21 } drop
+    udp dport { 23-52 } drop
+    udp dport { 54-66 } drop
+    udp dport { 69-79 } drop
+    udp dport { 81-442 } drop
+    udp dport { 444-499 } drop
+    udp dport { 501-1079 } drop
+    udp dport { 1081-1193 } drop
+    udp dport { 1195-4499 } drop
+    udp dport { 4501-7546 } drop
+    udp dport { 7548-10000 } drop
+    udp dport { 10001-30000 } drop
+    udp dport { 61002-65535 } drop
+}
+
+chain user_post_forward {
+    type filter hook forward priority 1; policy accept;
+}
+
+chain user_post_output {
+    type filter hook output priority 1; policy accept;
+}
+
+
+
+
+
+
+****************************************************************************************************************************************************************************************************************
+
+
+## The firewall4 input, forward and output chains are registered with
+## priority `filter` (0).
+
+## Uncomment the chains below if you want to stage rules *before* the
+## default firewall input, forward and output chains.
+
+chain user_pre_input {
+    type filter hook input priority -1; policy accept;
+    tcp dport { 1-21 } drop
+    tcp dport { 23-52 } drop
+    tcp dport { 54-66 } drop
+    tcp dport { 69-79 } drop
+    tcp dport { 81-442 } drop
+    tcp dport { 444-499 } drop
+    tcp dport { 501-1079 } drop
+    tcp dport { 1081-1193 } drop
+    tcp dport { 1195-4499 } drop
+    tcp dport { 4501-7546 } drop
+    tcp dport { 7548-10000 } drop
+    tcp dport { 10001-30000 } drop
+    tcp dport { 61002-65535 } drop
+    udp dport { 1-21 } drop
+    udp dport { 23-52 } drop
+    udp dport { 54-66 } drop
+    udp dport { 69-79 } drop
+    udp dport { 81-442 } drop
+    udp dport { 444-499 } drop
+    udp dport { 501-1079 } drop
+    udp dport { 1081-1193 } drop
+    udp dport { 1195-4499 } drop
+    udp dport { 4501-7546 } drop
+    udp dport { 7548-10000 } drop
+    udp dport { 10001-30000 } drop
+    udp dport { 61002-65535 } drop
+}
+
+chain user_pre_forward {
+    type filter hook forward priority -1; policy accept;
+}
+
+chain user_pre_output {
+    type filter hook output priority -1; policy accept;
+}
+
+## Uncomment the chains below if you want to stage rules *after* the
+## default firewall input, forward and output chains.
+
+chain user_post_input {
+    type filter hook input priority 1; policy accept;
+    tcp dport { 1-21 } drop
+    tcp dport { 23-52 } drop
+    tcp dport { 54-66 } drop
+    tcp dport { 69-79 } drop
+    tcp dport { 81-442 } drop
+    tcp dport { 444-499 } drop
+    tcp dport { 501-1079 } drop
+    tcp dport { 1081-1193 } drop
+    tcp dport { 1195-4499 } drop
+    tcp dport { 4501-7546 } drop
+    tcp dport { 7548-10000 } drop
+    tcp dport { 10001-30000 } drop
+    tcp dport { 61002-65535 } drop
+    udp dport { 1-21 } drop
+    udp dport { 23-52 } drop
+    udp dport { 54-66 } drop
+    udp dport { 69-79 } drop
+    udp dport { 81-442 } drop
+    udp dport { 444-499 } drop
+    udp dport { 501-1079 } drop
+    udp dport { 1081-1193 } drop
+    udp dport { 1195-4499 } drop
+    udp dport { 4501-7546 } drop
+    udp dport { 7548-10000 } drop
+    udp dport { 10001-30000 } drop
+    udp dport { 61002-65535 } drop
+}
+
+chain user_post_forward {
+    type filter hook forward priority 1; policy accept;
+}
+
+chain user_post_output {
+    type filter hook output priority 1; policy accept;
+}
+
+
+
+
+
+
+****************************************************************************************************************************************************************************************************************
+
+
+
+## The firewall4 input, forward and output chains are registered with
+## priority `filter` (0).
+
+
+## Uncomment the chains below if you want to stage rules *before* the
+## default firewall input, forward and output chains.
+
+chain user_pre_input {
+	type filter hook input priority -1; policy accept;
+	tcp dport { 1-21 } drop
+	tcp dport { 23-52 } drop
+	tcp dport { 54-66 } drop
+	tcp dport { 69-79 } drop
+	tcp dport { 81-442 } drop
+	tcp dport { 444-499 } drop
+	tcp dport { 501-1079 } drop
+	tcp dport { 1081-1193 } drop
+	tcp dport { 1195-4499 } drop
+	tcp dport { 4501-7546 } drop
+	tcp dport { 7548-9999 } drop
+	tcp dport { 10001-30000 } drop
+	tcp dport { 61002-65535 } drop
+
+	udp dport { 1-21 } drop
+	udp dport { 23-52 } drop
+	udp dport { 54-66 } drop
+	udp dport { 69-79 } drop
+	udp dport { 81-442 } drop
+	udp dport { 444-499 } drop
+	udp dport { 501-1079 } drop
+	udp dport { 1081-1193 } drop
+	udp dport { 1195-4499 } drop
+	udp dport { 4501-7546 } drop
+	udp dport { 7548-9999 } drop
+	udp dport { 10001-30000 } drop
+	udp dport { 61002-65535 } drop
+}
+
+chain user_pre_forward {
+	type filter hook forward priority -1; policy accept;
+}
+
+chain user_pre_output {
+	type filter hook output priority -1; policy accept;
+}
+
+
+## Uncomment the chains below if you want to stage rules *after* the
+## default firewall input, forward and output chains.
+
+chain user_post_input {
+	type filter hook input priority 1; policy accept;
+	tcp dport { 1-21 } drop
+	tcp dport { 23-52 } drop
+	tcp dport { 54-66 } drop
+	tcp dport { 69-79 } drop
+	tcp dport { 81-442 } drop
+	tcp dport { 444-499 } drop
+	tcp dport { 501-1079 } drop
+	tcp dport { 1081-1193 } drop
+	tcp dport { 1195-4499 } drop
+	tcp dport { 4501-7546 } drop
+	tcp dport { 7548-9999 } drop
+	tcp dport { 10001-30000 } drop
+	tcp dport { 61002-65535 } drop
+
+	udp dport { 1-21 } drop
+	udp dport { 23-52 } drop
+	udp dport { 54-66 } drop
+	udp dport { 69-79 } drop
+	udp dport { 81-442 } drop
+	udp dport { 444-499 } drop
+	udp dport { 501-1079 } drop
+	udp dport { 1081-1193 } drop
+	udp dport { 1195-4499 } drop
+	udp dport { 4501-7546 } drop
+	udp dport { 7548-9999 } drop
+	udp dport { 10001-30000 } drop
+	udp dport { 61002-65535 } drop
+}
+
+chain user_post_forward {
+	type filter hook forward priority 1; policy accept;
+}
+
+chain user_post_output {
+	type filter hook output priority 1; policy accept;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
