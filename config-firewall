@@ -226,14 +226,14 @@ config rule
 	option target 'DROP'
 
 config rule
-	option name 'Block WAN to router ports 30000-35000'
+	option name 'Block WAN to router ports 30001-35000'
 	option src '*'
 	option proto 'tcp udp'
 	option dest_port '30001-40000'
 	option target 'DROP'
 
 config rule
-	option name 'Block WAN to router ports 30000-35000'
+	option name 'Block WAN to router ports 40001-45000'
 	option src '*'
 	option proto 'tcp udp'
 	option dest_port '40001-45000'
@@ -241,7 +241,7 @@ config rule
 
 
 config rule
-	option name 'Block WAN to router ports 30000-35000'
+	option name 'Block WAN to router ports 45000-50000'
 	option src '*'
 	option proto 'tcp udp'
 	option dest_port '45000-50000'
