@@ -50,6 +50,8 @@ echo -n > /etc/nftables.d/10-custom-filter-chains.nft
 
 ****************************************************************************************************************************************************************************************************************
 
+sudo nano /etc/nftables.d/10-custom-filter-chains.nft
+
 
 ## The firewall4 input, forward and output chains are registered with
 ## priority `filter` (0).
