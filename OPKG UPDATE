@@ -115,11 +115,6 @@ opkg install nft-qos nftables-nojson arptables-nft banip cni-plugins-nft ebtable
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
 opkg update
 opkg remove dnsmasq
 opkg install dnsmasq-full
@@ -128,7 +123,6 @@ opkg install openvpn-openssl
 opkg install ip-full
 opkg install luci-app-openvpn
 opkg install nano curl sudo 
-
 
 
 
