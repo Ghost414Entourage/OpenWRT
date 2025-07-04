@@ -1,3 +1,31 @@
 sudo nft add rule inet fw4 prerouting tcp dport 443 counter drop
 
 sudo nft add rule inet fw4 prerouting udp dport 443 counter drop
+
+
+
+
+
+nano generate_nft_rules.sh
+
+#!/bin/bash
+
+# Output file
+OUTPUT_FILE="nft_prerouting_rules.txt"
+
+# Clear the output file if it exists
+> "$OUTPUT_FILE"
+
+# Loop over ports 1 to 65535
+for port in {1..65535}; do
+    echo "sudo nft add rule inet fw4 prerouting tcp dport $port counter drop" >> "$OUTPUT_FILE"
+    echo "sudo nft add rule inet fw4 prerouting udp dport $port counter drop" >> "$OUTPUT_FILE"
+done
+
+echo "Rules written to $OUTPUT_FILE"
+
+
+chmod +x generate_nft_rules.sh
+
+
+./generate_nft_rules.sh
