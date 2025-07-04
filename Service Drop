@@ -1,0 +1,847 @@
+tcp dport { echo } drop
+udp dport { echo } drop
+
+tcp dport { discard } drop
+udp dport { discard } drop
+
+tcp dport { daytime } drop
+udp dport { daytime } drop
+
+tcp dport { netstat } drop
+udp dport { netstat } drop
+
+tcp dport { chargen } drop
+udp dport { chargen } drop
+
+tcp dport { ftp-data } drop
+udp dport { ftp-data } drop
+
+tcp dport { ftp } drop
+udp dport { ftp } drop
+
+tcp dport { ssh } drop
+udp dport { ssh } drop
+
+tcp dport { telnet } drop
+udp dport { telnet } drop
+
+tcp dport { smtp } drop
+udp dport { smtp } drop
+
+tcp dport { time } drop
+udp dport { time } drop
+
+tcp dport { whois } drop
+udp dport { whois } drop
+
+tcp dport { domain } drop
+udp dport { domain } drop
+
+
+tcp dport { bootps } drop
+udp dport { bootps } drop
+
+tcp dport { bootpc } drop
+udp dport { bootpc } drop
+
+tcp dport { tftp } drop
+udp dport { tftp } drop
+
+tcp dport { finger } drop
+udp dport { finger } drop
+
+tcp dport { www } drop
+udp dport { www } drop
+
+tcp dport { kerberos } drop
+udp dport { kerberos } drop
+
+tcp dport { pop3 } drop
+udp dport { pop3 } drop
+
+tcp dport { sunrpc } drop
+udp dport { sunrpc } drop
+
+tcp dport { auth } drop
+udp dport { auth } drop
+
+tcp dport { sftp } drop
+udp dport { sftp } drop
+
+tcp dport { nntp } drop
+udp dport { nntp } drop
+
+tcp dport { ntp } drop
+udp dport { ntp } drop
+
+tcp dport { netbios-ns } drop
+udp dport { netbios-ns } drop
+
+
+tcp dport { netbios-dgm } drop
+udp dport { netbios-dgm } drop
+
+tcp dport { netbios-ssn } drop
+udp dport { netbios-ssn } drop
+
+tcp dport { imap2 } drop
+udp dport { imap2 } drop
+
+tcp dport { snmp } drop
+udp dport { snmp } drop
+
+tcp dport { snmp-trap } drop
+udp dport { snmp-trap } drop
+
+tcp dport { xdmcp } drop
+udp dport { xdmcp } drop
+
+tcp dport { bgp } drop
+udp dport { bgp } drop
+
+tcp dport { imap3 } drop
+udp dport { imap3 } drop
+
+tcp dport { ldap } drop
+udp dport { ldap } drop
+
+tcp dport { https } drop
+udp dport { https } drop
+
+tcp dport { microsoft-ds } drop
+udp dport { microsoft-ds } drop
+
+tcp dport { isakmp } drop
+udp dport { isakmp } drop
+
+tcp dport { rtsp } drop
+udp dport { rtsp } drop
+
+
+tcp dport { ipp } drop
+udp dport { ipp } drop
+
+tcp dport { syslog } drop
+udp dport { syslog } drop
+
+tcp dport { printer } drop
+udp dport { printer } drop
+
+tcp dport { dhcpv6-client } drop
+udp dport { dhcpv6-client } drop
+
+tcp dport { dhcpv6-server } drop
+udp dport { dhcpv6-server } drop
+
+tcp dport { afpovertcp } drop
+udp dport { afpovertcp } drop
+
+tcp dport { nntps } drop
+udp dport { nntps } drop
+
+tcp dport { submission } drop
+udp dport { submission } drop
+
+tcp dport { ldaps } drop
+udp dport { ldaps } drop
+
+tcp dport { tinc } drop
+udp dport { tinc } drop
+
+tcp dport { rsync } drop
+udp dport { rsync } drop
+
+tcp dport { ftps-data } drop
+udp dport { ftps-data } drop
+
+tcp dport { ftps } drop
+udp dport { ftps } drop
+
+
+tcp dport { imaps } drop
+udp dport { imaps } drop
+
+
+tcp dport { ircs } drop
+udp dport { ircs } drop
+
+tcp dport { pop3s } drop
+udp dport { pop3s } drop
+
+tcp dport { socks } drop
+udp dport { socks } drop
+
+tcp dport { openvpn } drop
+udp dport { openvpn } drop
+
+tcp dport { l2f } drop
+udp dport { l2f } drop
+
+tcp dport { radius } drop
+udp dport { radius } drop
+
+tcp dport { radius-acct } drop
+udp dport { radius-acct } drop
+
+tcp dport { nfs } drop
+udp dport { nfs } drop
+
+tcp dport { dict } drop
+udp dport { dict } drop
+
+tcp dport { gpsd } drop
+udp dport { gpsd } drop
+
+tcp dport { icpv2 } drop
+udp dport { icpv2 } drop
+
+tcp dport { mysql } drop
+udp dport { mysql } drop
+
+tcp dport { nut } drop
+udp dport { nut } drop
+
+tcp dport { distcc } drop
+udp dport { distcc } drop
+
+tcp dport { daap } drop
+udp dport { daap } drop
+
+tcp dport { svn } drop
+udp dport { svn } drop
+
+tcp dport { epmd } drop
+udp dport { epmd } drop
+
+tcp dport { iax } drop
+udp dport { iax } drop
+
+tcp dport { mtn } drop
+udp dport { mtn } drop
+
+tcp dport { munin } drop
+udp dport { munin } drop
+
+tcp dport { sip } drop
+udp dport { sip } drop
+
+tcp dport { sip-tls } drop
+udp dport { sip-tls } drop
+
+tcp dport { xmpp-client } drop
+udp dport { xmpp-client } drop
+
+tcp dport { xmpp-server } drop
+udp dport { xmpp-server } drop
+
+tcp dport { mdns } drop
+udp dport { mdns } drop
+
+
+tcp dport { postgresql } drop
+udp dport { postgresql } drop
+
+tcp dport { x11 } drop
+udp dport { x11 } drop
+
+tcp dport { mysql-proxy } drop
+udp dport { mysql-proxy } drop
+
+tcp dport { bacula-dir } drop
+udp dport { bacula-dir } drop
+
+tcp dport { bacula-fd } drop
+udp dport { bacula-fd } drop
+
+tcp dport { bacula-sd } drop
+udp dport { bacula-sd } drop
+
+tcp dport { nbd } drop
+udp dport { nbd } drop
+
+tcp dport { zabbix-agent } drop
+udp dport { zabbix-agent } drop
+
+tcp dport { zabbix-trapper } drop
+udp dport { zabbix-trapper } drop
+
+tcp dport { hkp } drop
+udp dport { hkp } drop
+
+tcp dport { ssmtp } drop
+udp dport { ssmtp } drop
+
+tcp dport { spamd } drop
+udp dport { spamd } drop
+
+tcp dport { zebrasrv } drop
+udp dport { zebrasrv } drop
+
+
+tcp dport { zebra } drop
+udp dport { zebra } drop
+
+tcp dport { ripd } drop
+udp dport { ripd } drop
+
+
+tcp dport { ripngd } drop
+udp dport { ripngd } drop
+
+tcp dport { ospfd } drop
+udp dport { ospfd } drop
+
+tcp dport { bgpd } drop
+udp dport { bgpd } drop
+
+tcp dport { ospf6d } drop
+udp dport { ospf6d } drop
+
+tcp dport { ospfapi } drop
+udp dport { ospfapi } drop
+
+tcp dport { isisd } drop
+udp dport { isisd } drop
+
+tcp dport { sane-port } drop
+udp dport { sane-port } drop
+
+tcp dport { ircd } drop
+udp dport { ircd } drop
+
+tcp dport { git } drop
+udp dport { git } drop
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+nft add rule inet fw4 prerouting tcp dport { https } drop
+nft add rule inet fw4 prerouting udp dport { https } drop
+
+nft add rule inet fw4 prerouting tcp dport { 443 } drop
+nft add rule inet fw4 prerouting udp dport { 443 } drop
+
+nft add rule inet fw4 prerouting tcp dport https drop
+nft add rule inet fw4 prerouting udp dport https drop
+
+nft add rule inet fw4 prerouting tcp dport 443 drop
+nft add rule inet fw4 prerouting udp dport 443 drop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+echo
+discard
+daytime
+netstat
+chargen
+ftp-data
+ftp
+ssh
+telnet
+smtp
+time
+whois
+domain
+bootps
+bootpc
+tftp
+finger
+www
+kerberos
+pop3
+sunrpc
+auth
+sftp
+nntp
+ntp
+netbios-ns
+netbios-dgm
+netbios-ssn
+imap2
+snmp
+snmp-trap
+xdmcp
+bgp
+imap3
+ldap
+https
+microsoft-ds
+isakmp
+rtsp
+ipp
+syslog
+printer
+dhcpv6-client
+dhcpv6-server
+afpovertcp
+nntps
+submission
+ldaps
+tinc
+rsync
+ftps-data
+ftps
+imaps
+ircs
+pop3s
+socks
+openvpn
+l2f
+radius
+radius-acct
+nfs
+dict
+gpsd
+icpv2
+mysql
+nut
+distcc
+daap
+svn
+epmd
+iax
+mtn
+munin
+sip
+sip-tls
+xmpp-client
+xmpp-server
+mdns
+postgresql
+x11
+mysql-proxy
+bacula-dir
+bacula-fd
+bacula-sd
+nbd
+zabbix-agent
+zabbix-trapper
+hkp
+ssmtp
+spamd
+zebrasrv
+zebra
+ripd
+ripngd
+ospfd
+bgpd
+ospf6d
+ospfapi
+isisd
+sane-port
+ircd
+git
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+input
+forward
+output
+prerouting
+handle_reject
+syn_flood
+input_lan
+output_lan
+forward_lan
+helper_lan
+accept_from_lan
+accept_to_lan
+input_wan
+output_wan
+forward_wan
+accept_to_wan
+reject_from_wan
+reject_to_wan
+input_vpnfirewall
+output_vpnfirewall
+forward_vpnfirewall
+accept_to_vpnfirewall
+reject_from_vpnfirewall
+reject_to_vpnfirewall
+dstnat
+srcnat
+srcnat_wan
+srcnat_vpnfirewall
+raw_prerouting
+raw_output
+mangle_prerouting
+mangle_postrouting
+mangle_input
+mangle_output
+mangle_forward
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+nft add rule inet fw4 prerouting tcp dport { echo } drop
+nft add rule inet fw4 prerouting udp dport { echo } drop
+
+nft add rule inet fw4 prerouting tcp dport { discard } drop
+nft add rule inet fw4 prerouting udp dport { discard } drop
+
+nft add rule inet fw4 prerouting tcp dport { daytime } drop
+nft add rule inet fw4 prerouting udp dport { daytime } drop
+
+nft add rule inet fw4 prerouting tcp dport { netstat } drop
+nft add rule inet fw4 prerouting udp dport { netstat } drop
+
+nft add rule inet fw4 prerouting tcp dport { chargen } drop
+nft add rule inet fw4 prerouting udp dport { chargen } drop
+
+nft add rule inet fw4 prerouting tcp dport { ftp-data } drop
+nft add rule inet fw4 prerouting udp dport { ftp-data } drop
+
+nft add rule inet fw4 prerouting tcp dport { ftp } drop
+nft add rule inet fw4 prerouting udp dport { ftp } drop
+
+nft add rule inet fw4 prerouting tcp dport { ssh } drop
+nft add rule inet fw4 prerouting udp dport { ssh } drop
+
+nft add rule inet fw4 prerouting tcp dport { telnet } drop
+nft add rule inet fw4 prerouting udp dport { telnet } drop
+
+nft add rule inet fw4 prerouting tcp dport { smtp } drop
+nft add rule inet fw4 prerouting udp dport { smtp } drop
+
+nft add rule inet fw4 prerouting tcp dport { time } drop
+nft add rule inet fw4 prerouting udp dport { time } drop
+
+nft add rule inet fw4 prerouting tcp dport { 37 } drop
+nft add rule inet fw4 prerouting udp dport { 37 } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { whois } drop
+nft add rule inet fw4 prerouting udp dport { whois } drop
+
+nft add rule inet fw4 prerouting tcp dport { domain } drop
+nft add rule inet fw4 prerouting udp dport { domain } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { bootps } drop
+nft add rule inet fw4 prerouting udp dport { bootps } drop
+
+nft add rule inet fw4 prerouting tcp dport { bootpc } drop
+nft add rule inet fw4 prerouting udp dport { bootpc } drop
+
+nft add rule inet fw4 prerouting tcp dport { tftp } drop
+nft add rule inet fw4 prerouting udp dport { tftp } drop
+
+nft add rule inet fw4 prerouting tcp dport { finger } drop
+nft add rule inet fw4 prerouting udp dport { finger } drop
+
+nft add rule inet fw4 prerouting tcp dport { www } drop
+nft add rule inet fw4 prerouting udp dport { www } drop
+
+nft add rule inet fw4 prerouting tcp dport { kerberos } drop
+nft add rule inet fw4 prerouting udp dport { kerberos } drop
+
+nft add rule inet fw4 prerouting tcp dport { pop3 } drop
+nft add rule inet fw4 prerouting udp dport { pop3 } drop
+
+nft add rule inet fw4 prerouting tcp dport { sunrpc } drop
+nft add rule inet fw4 prerouting udp dport { sunrpc } drop
+
+nft add rule inet fw4 prerouting tcp dport { auth } drop
+nft add rule inet fw4 prerouting udp dport { auth } drop
+
+nft add rule inet fw4 prerouting tcp dport { sftp } drop
+nft add rule inet fw4 prerouting udp dport { sftp } drop
+
+nft add rule inet fw4 prerouting tcp dport { nntp } drop
+nft add rule inet fw4 prerouting udp dport { nntp } drop
+
+nft add rule inet fw4 prerouting tcp dport { ntp } drop
+nft add rule inet fw4 prerouting udp dport { ntp } drop
+
+nft add rule inet fw4 prerouting tcp dport { netbios-ns } drop
+nft add rule inet fw4 prerouting udp dport { netbios-ns } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { netbios-dgm } drop
+nft add rule inet fw4 prerouting udp dport { netbios-dgm } drop
+
+nft add rule inet fw4 prerouting tcp dport { netbios-ssn } drop
+nft add rule inet fw4 prerouting udp dport { netbios-ssn } drop
+
+nft add rule inet fw4 prerouting tcp dport { imap2 } drop
+nft add rule inet fw4 prerouting udp dport { imap2 } drop
+
+nft add rule inet fw4 prerouting tcp dport { snmp } drop
+nft add rule inet fw4 prerouting udp dport { snmp } drop
+
+nft add rule inet fw4 prerouting tcp dport { snmp-trap } drop
+nft add rule inet fw4 prerouting udp dport { snmp-trap } drop
+
+nft add rule inet fw4 prerouting tcp dport { xdmcp } drop
+nft add rule inet fw4 prerouting udp dport { xdmcp } drop
+
+nft add rule inet fw4 prerouting tcp dport { bgp } drop
+nft add rule inet fw4 prerouting udp dport { bgp } drop
+
+nft add rule inet fw4 prerouting tcp dport { imap3 } drop
+nft add rule inet fw4 prerouting udp dport { imap3 } drop
+
+nft add rule inet fw4 prerouting tcp dport { ldap } drop
+nft add rule inet fw4 prerouting udp dport { ldap } drop
+
+nft add rule inet fw4 prerouting tcp dport { https } drop
+nft add rule inet fw4 prerouting udp dport { https } drop
+
+nft add rule inet fw4 prerouting tcp dport { microsoft-ds } drop
+nft add rule inet fw4 prerouting udp dport { microsoft-ds } drop
+
+nft add rule inet fw4 prerouting tcp dport { isakmp } drop
+nft add rule inet fw4 prerouting udp dport { isakmp } drop
+
+nft add rule inet fw4 prerouting tcp dport { rtsp } drop
+nft add rule inet fw4 prerouting udp dport { rtsp } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { ipp } drop
+nft add rule inet fw4 prerouting udp dport { ipp } drop
+
+nft add rule inet fw4 prerouting tcp dport { syslog } drop
+nft add rule inet fw4 prerouting udp dport { syslog } drop
+
+nft add rule inet fw4 prerouting tcp dport { printer } drop
+nft add rule inet fw4 prerouting udp dport { printer } drop
+
+nft add rule inet fw4 prerouting tcp dport { dhcpv6-client } drop
+nft add rule inet fw4 prerouting udp dport { dhcpv6-client } drop
+
+nft add rule inet fw4 prerouting tcp dport { dhcpv6-server } drop
+nft add rule inet fw4 prerouting udp dport { dhcpv6-server } drop
+
+nft add rule inet fw4 prerouting tcp dport { afpovertcp } drop
+nft add rule inet fw4 prerouting udp dport { afpovertcp } drop
+
+nft add rule inet fw4 prerouting tcp dport { nntps } drop
+nft add rule inet fw4 prerouting udp dport { nntps } drop
+
+nft add rule inet fw4 prerouting tcp dport { submission } drop
+nft add rule inet fw4 prerouting udp dport { submission } drop
+
+nft add rule inet fw4 prerouting tcp dport { ldaps } drop
+nft add rule inet fw4 prerouting udp dport { ldaps } drop
+
+nft add rule inet fw4 prerouting tcp dport { tinc } drop
+nft add rule inet fw4 prerouting udp dport { tinc } drop
+
+nft add rule inet fw4 prerouting tcp dport { rsync } drop
+nft add rule inet fw4 prerouting udp dport { rsync } drop
+
+nft add rule inet fw4 prerouting tcp dport { ftps-data } drop
+nft add rule inet fw4 prerouting udp dport { ftps-data } drop
+
+nft add rule inet fw4 prerouting tcp dport { ftps } drop
+nft add rule inet fw4 prerouting udp dport { ftps } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { imaps } drop
+nft add rule inet fw4 prerouting udp dport { imaps } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { ircs } drop
+nft add rule inet fw4 prerouting udp dport { ircs } drop
+
+nft add rule inet fw4 prerouting tcp dport { pop3s } drop
+nft add rule inet fw4 prerouting udp dport { pop3s } drop
+
+nft add rule inet fw4 prerouting tcp dport { socks } drop
+nft add rule inet fw4 prerouting udp dport { socks } drop
+
+nft add rule inet fw4 prerouting tcp dport { openvpn } drop
+nft add rule inet fw4 prerouting udp dport { openvpn } drop
+
+nft add rule inet fw4 prerouting tcp dport { l2f } drop
+nft add rule inet fw4 prerouting udp dport { l2f } drop
+
+nft add rule inet fw4 prerouting tcp dport { radius } drop
+nft add rule inet fw4 prerouting udp dport { radius } drop
+
+nft add rule inet fw4 prerouting tcp dport { radius-acct } drop
+nft add rule inet fw4 prerouting udp dport { radius-acct } drop
+
+nft add rule inet fw4 prerouting tcp dport { nfs } drop
+nft add rule inet fw4 prerouting udp dport { nfs } drop
+
+nft add rule inet fw4 prerouting tcp dport { dict } drop
+nft add rule inet fw4 prerouting udp dport { dict } drop
+
+nft add rule inet fw4 prerouting tcp dport { gpsd } drop
+nft add rule inet fw4 prerouting udp dport { gpsd } drop
+
+nft add rule inet fw4 prerouting tcp dport { icpv2 } drop
+nft add rule inet fw4 prerouting udp dport { icpv2 } drop
+
+nft add rule inet fw4 prerouting tcp dport { mysql } drop
+nft add rule inet fw4 prerouting udp dport { mysql } drop
+
+nft add rule inet fw4 prerouting tcp dport { nut } drop
+nft add rule inet fw4 prerouting udp dport { nut } drop
+
+nft add rule inet fw4 prerouting tcp dport { distcc } drop
+nft add rule inet fw4 prerouting udp dport { distcc } drop
+
+nft add rule inet fw4 prerouting tcp dport { daap } drop
+nft add rule inet fw4 prerouting udp dport { daap } drop
+
+nft add rule inet fw4 prerouting tcp dport { svn } drop
+nft add rule inet fw4 prerouting udp dport { svn } drop
+
+nft add rule inet fw4 prerouting tcp dport { epmd } drop
+nft add rule inet fw4 prerouting udp dport { epmd } drop
+
+nft add rule inet fw4 prerouting tcp dport { iax } drop
+nft add rule inet fw4 prerouting udp dport { iax } drop
+
+nft add rule inet fw4 prerouting tcp dport { mtn } drop
+nft add rule inet fw4 prerouting udp dport { mtn } drop
+
+nft add rule inet fw4 prerouting tcp dport { munin } drop
+nft add rule inet fw4 prerouting udp dport { munin } drop
+
+nft add rule inet fw4 prerouting tcp dport { sip } drop
+nft add rule inet fw4 prerouting udp dport { sip } drop
+
+nft add rule inet fw4 prerouting tcp dport { sip-tls } drop
+nft add rule inet fw4 prerouting udp dport { sip-tls } drop
+
+nft add rule inet fw4 prerouting tcp dport { xmpp-client } drop
+nft add rule inet fw4 prerouting udp dport { xmpp-client } drop
+
+nft add rule inet fw4 prerouting tcp dport { xmpp-server } drop
+nft add rule inet fw4 prerouting udp dport { xmpp-server } drop
+
+nft add rule inet fw4 prerouting tcp dport { mdns } drop
+nft add rule inet fw4 prerouting udp dport { mdns } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { postgresql } drop
+nft add rule inet fw4 prerouting udp dport { postgresql } drop
+
+nft add rule inet fw4 prerouting tcp dport { x11 } drop
+nft add rule inet fw4 prerouting udp dport { x11 } drop
+
+nft add rule inet fw4 prerouting tcp dport { mysql-proxy } drop
+nft add rule inet fw4 prerouting udp dport { mysql-proxy } drop
+
+nft add rule inet fw4 prerouting tcp dport { bacula-dir } drop
+nft add rule inet fw4 prerouting udp dport { bacula-dir } drop
+
+nft add rule inet fw4 prerouting tcp dport { bacula-fd } drop
+nft add rule inet fw4 prerouting udp dport { bacula-fd } drop
+
+nft add rule inet fw4 prerouting tcp dport { bacula-sd } drop
+nft add rule inet fw4 prerouting udp dport { bacula-sd } drop
+
+nft add rule inet fw4 prerouting tcp dport { nbd } drop
+nft add rule inet fw4 prerouting udp dport { nbd } drop
+
+nft add rule inet fw4 prerouting tcp dport { zabbix-agent } drop
+nft add rule inet fw4 prerouting udp dport { zabbix-agent } drop
+
+nft add rule inet fw4 prerouting tcp dport { zabbix-trapper } drop
+nft add rule inet fw4 prerouting udp dport { zabbix-trapper } drop
+
+nft add rule inet fw4 prerouting tcp dport { hkp } drop
+nft add rule inet fw4 prerouting udp dport { hkp } drop
+
+nft add rule inet fw4 prerouting tcp dport { ssmtp } drop
+nft add rule inet fw4 prerouting udp dport { ssmtp } drop
+
+nft add rule inet fw4 prerouting tcp dport { spamd } drop
+nft add rule inet fw4 prerouting udp dport { spamd } drop
+
+nft add rule inet fw4 prerouting tcp dport { zebrasrv } drop
+nft add rule inet fw4 prerouting udp dport { zebrasrv } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { zebra } drop
+nft add rule inet fw4 prerouting udp dport { zebra } drop
+
+nft add rule inet fw4 prerouting tcp dport { ripd } drop
+nft add rule inet fw4 prerouting udp dport { ripd } drop
+
+
+nft add rule inet fw4 prerouting tcp dport { ripngd } drop
+nft add rule inet fw4 prerouting udp dport { ripngd } drop
+
+nft add rule inet fw4 prerouting tcp dport { ospfd } drop
+nft add rule inet fw4 prerouting udp dport { ospfd } drop
+
+nft add rule inet fw4 prerouting tcp dport { bgpd } drop
+nft add rule inet fw4 prerouting udp dport { bgpd } drop
+
+nft add rule inet fw4 prerouting tcp dport { ospf6d } drop
+nft add rule inet fw4 prerouting udp dport { ospf6d } drop
+
+nft add rule inet fw4 prerouting tcp dport { ospfapi } drop
+nft add rule inet fw4 prerouting udp dport { ospfapi } drop
+
+nft add rule inet fw4 prerouting tcp dport { isisd } drop
+nft add rule inet fw4 prerouting udp dport { isisd } drop
+
+nft add rule inet fw4 prerouting tcp dport { sane-port } drop
+nft add rule inet fw4 prerouting udp dport { sane-port } drop
+
+nft add rule inet fw4 prerouting tcp dport { ircd } drop
+nft add rule inet fw4 prerouting udp dport { ircd } drop
+
+nft add rule inet fw4 prerouting tcp dport { git } drop
+nft add rule inet fw4 prerouting udp dport { git } drop
+
+
+
+
+
+
+
+
