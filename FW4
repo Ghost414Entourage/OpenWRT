@@ -34,3 +34,131 @@ mangle_input
 mangle_output
 mangle_forward
 
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+# input
+sudo nft add rule inet fw4 input tcp dport 443 counter drop
+sudo nft add rule inet fw4 input udp dport 443 counter drop
+
+# forward
+sudo nft add rule inet fw4 forward tcp dport 443 counter drop
+sudo nft add rule inet fw4 forward udp dport 443 counter drop
+
+# output
+sudo nft add rule inet fw4 output tcp dport 443 counter drop
+sudo nft add rule inet fw4 output udp dport 443 counter drop
+
+# prerouting
+sudo nft add rule inet fw4 prerouting tcp dport 443 counter drop
+sudo nft add rule inet fw4 prerouting udp dport 443 counter drop
+
+# handle_reject
+sudo nft add rule inet fw4 handle_reject tcp dport 443 counter drop
+sudo nft add rule inet fw4 handle_reject udp dport 443 counter drop
+
+# syn_flood
+sudo nft add rule inet fw4 syn_flood tcp dport 443 counter drop
+sudo nft add rule inet fw4 syn_flood udp dport 443 counter drop
+
+# input_lan
+sudo nft add rule inet fw4 input_lan tcp dport 443 counter drop
+sudo nft add rule inet fw4 input_lan udp dport 443 counter drop
+
+# output_lan
+sudo nft add rule inet fw4 output_lan tcp dport 443 counter drop
+sudo nft add rule inet fw4 output_lan udp dport 443 counter drop
+
+# forward_lan
+sudo nft add rule inet fw4 forward_lan tcp dport 443 counter drop
+sudo nft add rule inet fw4 forward_lan udp dport 443 counter drop
+
+# helper_lan
+sudo nft add rule inet fw4 helper_lan tcp dport 443 counter drop
+sudo nft add rule inet fw4 helper_lan udp dport 443 counter drop
+
+# accept_from_lan
+sudo nft add rule inet fw4 accept_from_lan tcp dport 443 counter drop
+sudo nft add rule inet fw4 accept_from_lan udp dport 443 counter drop
+
+# accept_to_lan
+sudo nft add rule inet fw4 accept_to_lan tcp dport 443 counter drop
+sudo nft add rule inet fw4 accept_to_lan udp dport 443 counter drop
+
+# input_wan
+sudo nft add rule inet fw4 input_wan tcp dport 443 counter drop
+sudo nft add rule inet fw4 input_wan udp dport 443 counter drop
+
+# output_wan
+sudo nft add rule inet fw4 output_wan tcp dport 443 counter drop
+sudo nft add rule inet fw4 output_wan udp dport 443 counter drop
+
+# forward_wan
+sudo nft add rule inet fw4 forward_wan tcp dport 443 counter drop
+sudo nft add rule inet fw4 forward_wan udp dport 443 counter drop
+
+# accept_to_wan
+sudo nft add rule inet fw4 accept_to_wan tcp dport 443 counter drop
+sudo nft add rule inet fw4 accept_to_wan udp dport 443 counter drop
+
+# reject_from_wan
+sudo nft add rule inet fw4 reject_from_wan tcp dport 443 counter drop
+sudo nft add rule inet fw4 reject_from_wan udp dport 443 counter drop
+
+# reject_to_wan
+sudo nft add rule inet fw4 reject_to_wan tcp dport 443 counter drop
+sudo nft add rule inet fw4 reject_to_wan udp dport 443 counter drop
+
+# dstnat
+sudo nft add rule inet fw4 dstnat tcp dport 443 counter drop
+sudo nft add rule inet fw4 dstnat udp dport 443 counter drop
+
+# srcnat
+sudo nft add rule inet fw4 srcnat tcp dport 443 counter drop
+sudo nft add rule inet fw4 srcnat udp dport 443 counter drop
+
+# srcnat_wan
+sudo nft add rule inet fw4 srcnat_wan tcp dport 443 counter drop
+sudo nft add rule inet fw4 srcnat_wan udp dport 443 counter drop
+
+# raw_prerouting
+sudo nft add rule inet fw4 raw_prerouting tcp dport 443 counter drop
+sudo nft add rule inet fw4 raw_prerouting udp dport 443 counter drop
+
+# raw_output
+sudo nft add rule inet fw4 raw_output tcp dport 443 counter drop
+sudo nft add rule inet fw4 raw_output udp dport 443 counter drop
+
+# mangle_prerouting
+sudo nft add rule inet fw4 mangle_prerouting tcp dport 443 counter drop
+sudo nft add rule inet fw4 mangle_prerouting udp dport 443 counter drop
+
+# mangle_postrouting
+sudo nft add rule inet fw4 mangle_postrouting tcp dport 443 counter drop
+sudo nft add rule inet fw4 mangle_postrouting udp dport 443 counter drop
+
+# mangle_input
+sudo nft add rule inet fw4 mangle_input tcp dport 443 counter drop
+sudo nft add rule inet fw4 mangle_input udp dport 443 counter drop
+
+# mangle_output
+sudo nft add rule inet fw4 mangle_output tcp dport 443 counter drop
+sudo nft add rule inet fw4 mangle_output udp dport 443 counter drop
+
+# mangle_forward
+sudo nft add rule inet fw4 mangle_forward tcp dport 443 counter drop
+sudo nft add rule inet fw4 mangle_forward udp dport 443 counter drop
+
