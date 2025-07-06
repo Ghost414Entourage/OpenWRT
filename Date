@@ -32,3 +32,42 @@ uci set system.@system[0].zonename='America/Chicago'
 uci commit system
 /etc/init.d/system reload
 
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+echo -e "server=103.86.96.103  # NordVPN DNS primary\nserver=103.86.99.103  # NordVPN DNS backup" > /etc/dnsmasq.servers
+
+
+echo -e "# NordVPN DNS servers\nserver=103.86.96.103\nserver=103.86.99.103" > /etc/dnsmasq.d/nordvpn.conf
+
+
+echo -e "server=103.86.96.103\nserver=103.86.99.103" > /tmp/dnsmasq.d/nordvpn.conf
+
+
+nano /etc/dnsmasq.servers
+
+server=103.86.96.103  # NordVPN DNS primary
+server=103.86.99.103  # NordVPN DNS backup
+
+
+nano /etc/dnsmasq.d/nordvpn.conf
+
+# NordVPN DNS servers
+server=103.86.96.103
+server=103.86.99.103
+
+
+nano /tmp/dnsmasq.d/nordvpn.conf
+
+server=103.86.96.103
+server=103.86.99.103
+
+
+mkdir -p /tmp/dnsmasq.d && touch /tmp/dnsmasq.d/nordvpn.conf
