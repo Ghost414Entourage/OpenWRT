@@ -1,0 +1,31 @@
+cat <<EOF > /tmp/resolv.conf.d/resolv.conf.auto
+nameserver 103.86.96.103
+nameserver 103.86.99.103
+EOF
+
+
+
+chattr +i /tmp/resolv.conf.d/resolv.conf.auto
+
+
+
+
+
+
+
+
+
+chattr -i /tmp/resolv.conf.d/resolv.conf.auto
+
+
+
+
+
+cat <<EOF > /tmp/resolv.conf.d/resolv.conf.auto
+# Interface wan
+nameserver 192.168.1.254
+search attlocal.net
+# Interface wan6
+nameserver 2600:1700:c3e0:35e0::1
+search attlocal.net
+EOF
