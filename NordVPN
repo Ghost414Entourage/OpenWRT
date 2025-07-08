@@ -160,7 +160,7 @@ wget -P /etc/openvpn
 
 /etc/openvpn/secret
 
-echo -e "jXPRxV54UDBsSBousK3qtmQa\n8Xk8Szg6L3xWWhvwJXSp9eCV" > /etc/openvpn/secret
+
 
 
 uci set network.nordvpntun=interface
