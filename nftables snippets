@@ -1,0 +1,417 @@
+ruleset-pre
+
+
+# /etc/config/firewall
+config include
+	option enabled '1'                      
+	option type 'nftables'                  
+	option path '/etc/nft_ruleset_pre.nft'   
+	option position 'ruleset-pre'           
+
+
+
+
+touch /etc/nft_ruleset_pre.nft
+
+nano /etc/nft_ruleset_pre.nft
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cat << 'EOF' > /etc/nft_ruleset_pre.nft
+# /etc/nft_ruleset_pre.nft
+
+table inet nft_ruleset_pre {
+          chain ingress {
+                     type filter hook ingress priority 0; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain prerouting {
+                     type filter hook prerouting priority 0; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain input {
+                     type filter hook input priority 0; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain forward {
+                     type filter hook forward priority 0; policy accept;
+             }
+
+          chain output {
+                     type filter hook output priority 0; policy accept;
+             }
+
+          chain postrouting {
+                     type filter hook postrouting priority 0; policy accept;
+             }
+}
+EOF
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+ruleset-post 
+
+
+# /etc/config/firewall
+config include
+	option enabled '1'                      
+	option type 'nftables'                  
+	option path '/etc/nft_ruleset_post.nft'   
+	option position 'ruleset-post'     
+
+
+
+
+
+
+
+cat << 'EOF' > /etc/nft_ruleset_post.nft
+# /etc/nft_ruleset_post.nft
+
+table inet nft_ruleset_post {
+          chain ingress {
+                     type filter hook ingress priority 1; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain prerouting {
+                     type filter hook prerouting priority 1; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain input {
+                     type filter hook input priority 1; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain forward {
+                     type filter hook forward priority 1; policy accept;
+             }
+
+          chain output {
+                     type filter hook output priority 1; policy accept;
+             }
+
+          chain postrouting {
+                     type filter hook postrouting priority 1; policy accept;
+             }
+}
+EOF
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+table-pre
+
+
+config include
+	option enabled '1'
+	option type 'nftables'
+	option path '/etc/nft_table_pre.nft'
+	option position 'table-pre'
+
+
+
+
+
+
+
+cat << 'EOF' > /etc/nft_table_pre.nft
+# /etc/nft_table_pre.nft
+
+table inet nft_table_pre {
+          chain ingress {
+                     type filter hook ingress priority 0; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain prerouting {
+                     type filter hook prerouting priority 0; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain input {
+                     type filter hook input priority 0; policy accept;
+
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,
+                                501-1079,1081-1193,1195-4499,
+                                4501-7546,7548-10000,
+                                10000-30000,61002-65535} drop
+             }
+
+          chain forward {
+                     type filter hook forward priority 0; policy accept;
+             }
+
+          chain output {
+                     type filter hook output priority 0; policy accept;
+             }
+
+          chain postrouting {
+                     type filter hook postrouting priority 0; policy accept;
+             }
+}
+EOF
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+table-post
+
+
+config include
+	option enabled '1'
+	option type 'nftables'
+	option path '/etc/nft_table_post.nft'
+	option position 'table-post'
+
+
+
+
+
+
+
+cat << 'EOF' > /etc/nft_table_post.nft
+# /etc/nft_table_post.nft
+
+table inet nft_table_post {
+          chain ingress {
+                     type filter hook ingress priority 1; policy accept;
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+             }
+
+          chain prerouting {
+                     type filter hook prerouting priority 1; policy accept;
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+             }
+
+          chain input {
+                     type filter hook input priority 1; policy accept;
+                     tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+                     udp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+             }
+
+          chain forward {
+                     type filter hook forward priority 1; policy accept;
+             }
+
+          chain output {
+                     type filter hook output priority 1; policy accept;
+             }
+
+          chain postrouting {
+                     type filter hook postrouting priority 1; policy accept;
+             }
+}
+EOF
+
+
+
+
+
+
+
+cat << 'EOF' > /etc/nft_table_post.nft
+# /etc/nft_table_post.nft
+
+chain nft_table_post_ingress {
+        type filter hook ingress priority 1; policy accept;
+
+        tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+        udp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+}
+
+chain nft_table_post_prerouting {
+        type filter hook prerouting priority 1; policy accept;
+
+        tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+        udp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+}
+
+chain nft_table_post_input {
+        type filter hook input priority 1; policy accept;
+
+        tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+        udp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+}
+
+chain nft_table_post_forward {
+        type filter hook forward priority 1; policy accept;
+}
+
+chain nft_table_post_output {
+        type filter hook output priority 1; policy accept;
+}
+
+chain nft_table_post_postrouting {
+        type filter hook postrouting priority 1; policy accept;
+}
+EOF
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+chain-pre
+
+config include
+	option enabled '1'
+	option type 'nftables'
+	option path '/etc/nft_chain_pre_input.nft'
+	option position 'chain-pre'
+	option chain 'input'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cat << EOF > /etc/nft_chain_pre_input.nft
+table inet filter_pre {
+    chain input {
+        type filter hook input priority 0; policy accept;
+
+        tcp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+        udp dport {1-21,23-52,54-66,69-79,81-442,444-499,501-1079,1081-1193,1195-4499,4501-7546,7548-10000,10000-30000,61002-65535} drop
+    }
+}
+EOF
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+chain-post
+
+
+
+config include
+	option enabled '1'
+	option type 'nftables'
+	option path '/etc/nft_chain_post_input.nft'
+	option position 'chain-post'
+	option chain 'input'
+
+
+
+
+
+
+
