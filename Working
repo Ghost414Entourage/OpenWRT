@@ -1,0 +1,288 @@
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+	option ipv6 '0'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option delegate '0'
+	option ipv6 '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan'
+	option device 'wan'
+	option proto 'dhcp'
+	option ipv6 '0'
+
+config interface 'wan6'
+	option device 'wan'
+	option proto 'dhcpv6'
+	option ipv6 '0'
+	option delegate '0'
+	option ip6assign '0'
+	option disabled '1'
+	option reqaddress 'none'
+	option reqprefix 'no'
+	option norelease '1'
+
+config interface 'nordvpntun'
+	option proto 'none'
+	option device 'tun0'
+	option ipv6 '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+config dnsmasq
+    option domainneeded '1'
+    option boguspriv '1'
+    option filterwin2k '1'
+    option localise_queries '1'
+    option rebind_protection '1'
+    option rebind_localhost '0'
+    option local '/lan/'
+    option domain 'lan'
+    option expandhosts '1'
+    option nonegcache '0'
+    option cachesize '150'
+    option authoritative '1'
+    option readethers '1'
+    option leasefile '/tmp/dhcp.leases'
+    option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+    option nonwildcard '1'
+    option localservice '1'
+    option ednspacket_max '1232'
+    option filter_aaaa '0'
+    option filter_a '0'
+    option serverlist '/etc/dnsmasq.servers'
+    option noresolv '0'
+    option dnssec '1'
+    option noping '0'
+    option listen_address '192.168.1.1 75.9.162.190 127.0.0.1'
+    option cachelocal '1'
+    option port '53'
+
+
+config dhcp 'lan'
+	option interface 'lan'
+	option start '100'
+	option limit '150'
+	option leasetime '12h'
+	option dhcpv4 'server'
+	option dhcpv6 'disabled'
+	option ra 'disabled'
+	option ra_slaac '0'
+	list dhcp_option '6,103.86.96.103,103.86.99.103'
+	list dhcp_option_force '6,103.86.96.103,103.86.99.103'
+
+
+config dhcp 'wan'
+	option interface 'wan'
+	option ignore '1'
+
+config odhcpd 'odhcpd'
+	option maindhcp '0'
+	option leasefile '/tmp/hosts/odhcpd'
+	option leasetrigger '/usr/sbin/odhcpd-update'
+	option loglevel '4'
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+config defaults
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option drop_invalid '1'
+	option syn_flood '1'
+	option synflood_protect '1'
+	option synflood_rate '25/s'
+	option synflood_burst '50'
+	option tcp_ecn '1'
+	option tcp_syncookies '1'
+	option tcp_window_scaling '1'
+	option accept_redirects '0'
+	option accept_source_route '0'
+	option flow_offloading '0'
+	option flow_offloading_hw '0'
+	option auto_helper '1'
+	option auto_includes '1'
+
+
+
+
+config zone
+	option name 'lan'
+	list network 'lan'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+
+config zone
+	option name 'wan'
+	list network 'wan'
+	list network 'wan6'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option mtu_fix '1'
+
+config forwarding
+	option src 'lan'
+	option dest 'wan'
+
+config rule
+	option name 'Allow-DHCP-Renew'
+	option src 'wan'
+	option proto 'udp'
+	option dest_port '68'
+	option target 'ACCEPT'
+	option family 'ipv4'
+
+config zone
+	option name 'vpnfirewall'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option mtu_fix '1'
+	list network 'nordvpntun'
+
+config forwarding
+	option src 'lan'
+	option dest 'vpnfirewall'
+
+
+
+
+config rule
+	option name 'Block WAN to router ports 1-21'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '1-21'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 23-52'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '23-52'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 54-66'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '54-66'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 69-79'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '69-79'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 81-442'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '81-442'
+	option target 'DROP'
+
+
+config rule
+	option name 'Block WAN to router ports 444-499'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '444-499'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 501-1079'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '501-1079'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 1081-1193'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '1081-1193'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 1195-4499'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '1195-4499'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 4501-7546'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '4501-7546'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 7548-10000'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '7548-10000'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 10000-30000'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '10001-30000'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 30001-35000'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '30001-40000'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 40001-45000'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '40001-45000'
+	option target 'DROP'
+
+
+config rule
+	option name 'Block WAN to router ports 45000-50000'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '45000-50000'
+	option target 'DROP'
+
+config rule
+	option name 'Block WAN to router ports 61002-65535'
+	option src '*'
+	option proto 'tcp udp'
+	option dest_port '61002-65535'
+	option target 'DROP'
+
