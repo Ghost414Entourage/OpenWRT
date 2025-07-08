@@ -797,6 +797,10 @@ serverlist:
 
 Specify upstream servers directly. If one or more optional domains are given, that server is used only for those domains and they are queried only using the specified server. Syntax is server=/*.mydomain.tld/192.168.100.1 or see the dnsmasq man page for details.
 
+
+Don't read /etc/resolv.conf. Get upstream servers only from the command line or the dnsmasq configuration file.
+
+
 server=/*.mydomain.tld/192.168.100.1
 server=8.8.8.8
 server=1.1.1.1
