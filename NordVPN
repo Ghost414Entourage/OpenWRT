@@ -150,9 +150,76 @@ sed -i '/^auth-user-pass$/c\auth-user-pass /etc/openvpn/secret' /etc/openvpn/us8
 sed -i '/^auth-user-pass\b/c\auth-user-pass /etc/openvpn/secret' /etc/openvpn/us8116.nordvpn.com.udp.ovpn
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+for f in /etc/openvpn/*.ovpn; do \
+  sed -i '/^pull$/a dhcp-option DNS 103.86.96.103\ndhcp-option DNS 103.86.99.103' "$f"; \
+  sed -i '/^auth-user-pass$/c\auth-user-pass /etc/openvpn/secret' "$f"; \
+done
 
 
 
+
+
+
+
+
+
+
+for f in /etc/openvpn/*.ovpn; do
+  cp "$f" "$f.bak"
+  sed -i '/^pull$/a dhcp-option DNS 103.86.96.103\ndhcp-option DNS 103.86.99.103' "$f"
+  sed -i '/^auth-user-pass$/c\auth-user-pass /etc/openvpn/secret' "$f"
+done
+
+
+
+
+
+
+
+
+
+
+
+
+#!/bin/bash
+
+# Directory with .ovpn files
+DIR="/etc/openvpn"
+
+# Loop over .ovpn files
+for f in "$DIR"/*.ovpn; do
+  echo "Processing $f"
+
+  # Optional backup
+  cp "$f" "$f.bak"
+
+  # Insert DNS lines after 'pull'
+  sed -i '/^pull$/a dhcp-option DNS 103.86.96.103\
+dhcp-option DNS 103.86.99.103' "$f"
+
+  # Replace auth-user-pass line
+  sed -i '/^auth-user-pass$/c\auth-user-pass /etc/openvpn/secret' "$f"
+done
+
+echo "All done."
+
+
+
+
+
+
+chmod +x fix_ovpn.sh
+
+
+
+sudo ./fix_ovpn.sh
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
