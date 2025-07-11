@@ -1285,5 +1285,72 @@ Versions of dnsmasq prior to 2.80 defaulted to not checking unsigned replies, an
 
 
 
+Configuring dnsmasq to perform DNSSEC validation requires setting the dnsmasq
+option `dnssec` to `1` in the `/etc/config/dhcp` file. In addition, it is
+advisable to also set the dnsmasq option `dnsseccheckunsigned` to `1`. this can
+be achieved by editing the file `/etc/config/dhcp` or by executing the following
+commands:
+
+    uci set dhcp.@dnsmasq[-1].dnssec=1
+    uci set dhcp.@dnsmasq[-1].dnsseccheckunsigned=1
+    uci commit && reload_config
+
+The same options can be set in the LUCI web interface as follows:
+
+1. Select the "Network->DHCP and DNS" menu entry.
+2. Select the "Advanced Settings" tab.
+3. Ensure both the "DNSSEC" and "DNSSEC check unsigned" check boxes are ticked.
+
+#### Validating DNSSEC operation
+
+Having configured DNSSEC validation using one of the two approaches above, it's
+important to check it's actually working. The following command can be used:
+
+    dig dnssectest.sidn.nl +dnssec +multi @192.168.1.1
+    
+This command should return output like the following:
+
+    ; <<>> DiG 9.11.4-P1-RedHat-9.11.4-5.P1.fc28 <<>> dnssectest.sidn.nl +dnssec +multi @192.168.1.1
+    ;; global options: +cmd
+    ;; Got answer:
+    ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26579
+    ;; flags: qr rd ra ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+    ;; OPT PSEUDOSECTION:
+    ; EDNS: version: 0, flags: do; udp: 512
+    ;; QUESTION SECTION:
+    ;dnssectest.sidn.nl.	IN A
+
+    ;; ANSWER SECTION:
+    dnssectest.sidn.nl.	14399 IN A 213.136.9.12
+    dnssectest.sidn.nl.	14399 IN RRSIG A 8 3 14400 (
+				20181104071058 20181005071058 42033 sidn.nl.
+				YAQl3tef36M9EQUOmCneHKCCkxox3csLpfUOql5i/6ND
+				zPrQFsNr3g32HPoxOsi+hD2BE5+bEsnARayDSVLyx0qU
+				6Hpi2rzQ0zGNZZkCJhCsdp3wnM1BWlMgPrCD0iIsJDok
+				+DH5zu+yYufVUdSLQrMqA3MZDFUIqDUqSZuYDF4= )
+
+    ;; Query time: 77 msec
+    ;; SERVER: 192.168.1.1#53(192.168.1.1)
+    ;; WHEN: Sat Oct 06 20:36:25 BST 2018
+    ;; MSG SIZE  rcvd: 230
+
+The key thing to note is the `flags: qr rd ra ad` part - the `ad` flag signifies
+that DNSSEC validation is working. If that flag is absent DNSSEC validation is
+not working.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
