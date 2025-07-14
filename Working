@@ -144,17 +144,6 @@ config zone
 	option masq '1'
 	option mtu_fix '1'
 
-config forwarding
-	option src 'lan'
-	option dest 'wan'
-
-config rule
-	option name 'Allow-DHCP-Renew'
-	option src 'wan'
-	option proto 'udp'
-	option dest_port '68'
-	option target 'ACCEPT'
-	option family 'ipv4'
 
 config zone
 	option name 'vpnfirewall'
@@ -165,11 +154,27 @@ config zone
 	option mtu_fix '1'
 	list network 'nordvpntun'
 
+
+
+
+
+
+config forwarding
+	option src 'lan'
+	option dest 'wan'
+
 config forwarding
 	option src 'lan'
 	option dest 'vpnfirewall'
 
 
+config rule
+	option name 'Allow-DHCP-Renew'
+	option src 'wan'
+	option proto 'udp'
+	option dest_port '68'
+	option target 'ACCEPT'
+	option family 'ipv4'
 
 
 config rule
