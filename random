@@ -45,3 +45,82 @@ config interface 'nordvpntun'
 	option proto 'none'
 	option device 'tun0'
 	option ipv6 '0'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+	option ipv6 '0'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option delegate '0'
+	option ipv6 '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan'
+	option device 'wan'
+	option proto 'dhcp'
+	option ipv6 '0'
+	option norelease '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
+
+config interface 'wan6'
+	option device 'wan'
+	option proto 'dhcpv6'
+	option ipv6 '0'
+	option delegate '0'
+	option ip6assign '0'
+	option disabled '1'
+	option reqaddress 'none'
+	option reqprefix 'no'
+	option norelease '1'
+
+config interface 'nordvpntun'
+	option proto 'none'
+	option device 'tun0'
+	option ipv6 '0'
+	option peerdns '0'
+	list dns '103.86.96.103'
+	list dns '103.86.99.103'
