@@ -1524,6 +1524,26 @@ config dnsmasq
     option dnsseccheckunsigned '1'  
     option fqdn '1'
     option bogusnxdomain 
+    option localuse '1'
+
+
+
+
+
+localuse: 
+
+
+
+Use dnsmasq as a local system resolver. Depends on the noresolv and resolvfile options.
+
+
+
+
+
+
+
+
+
 
 
 
