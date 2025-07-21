@@ -295,6 +295,9 @@ iptables -D INPUT -p udp --dport 1:21 -j DROP
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+https://docs.kernel.org/networking/ip-sysctl.html
+
+
 
 rp_filter stands for Reverse Path Filtering, a Linux kernel security feature that helps prevent IP spoofing.
 It checks whether the source IP address of an incoming packet is reachable via the same interface it came in on.
@@ -442,9 +445,95 @@ echo 1 > /proc/sys/net/ipv4/conf/default/rp_filter
 
 
 
-https://docs.kernel.org/networking/ip-sysctl.html
 
 
+
+
+
+
+Normally, in a simple network, traffic between two points flows the same way back and forth:
+
+Packet goes out from your device through Interface A → to destination.
+Reply comes back through the same Interface A.
+This is called symmetric routing — the path to the destination and back is the same.
+
+Asymmetric routing means:
+Packets leave via one interface (say, Interface A).
+But the return packets come back via a different interface (say, Interface B).
+
+Example scenario:
+You have two WAN connections (dual WAN):
+
+Outbound packets to the internet leave via eth0 (WAN1).
+But the reply packets return via eth1 (WAN2).
+
+
+
+
+rp_filter checks if the incoming packet arrived on the interface that the kernel would use to send a reply back to that source IP.
+In strict mode (1), if the incoming packet comes in on a different interface than expected, rp_filter drops it.
+So asymmetric routing breaks strict rp_filter because replies arrive on a different interface than the outbound interface.
+
+
+Why asymmetric routing happens:
+Multi-WAN setups or policy-based routing.
+VPN tunnels that route return traffic differently.
+Complex network topologies.
+
+
+
+
+
+
+
+sudo tee -a /etc/sysctl.conf > /dev/null << EOF
+
+# Reverse Path Filtering Configuration - all interfaces set to loose mode
+
+net.ipv4.conf.wgclient1.rp_filter = 2
+net.ipv4.conf.eth0.rp_filter = 2
+net.ipv4.conf.eth1.rp_filter = 2
+net.ipv4.conf.br-lan.rp_filter = 2
+net.ipv4.conf.lo.rp_filter = 2
+net.ipv4.conf.apcli0.rp_filter = 2
+net.ipv4.conf.apclix0.rp_filter = 2
+net.ipv4.conf.ra0.rp_filter = 2
+net.ipv4.conf.ra1.rp_filter = 2
+net.ipv4.conf.rax0.rp_filter = 2
+net.ipv4.conf.rax1.rp_filter = 2
+
+net.ipv4.conf.all.rp_filter = 2
+net.ipv4.conf.default.rp_filter = 2
+
+EOF
+
+
+
+sudo sysctl --system
+
+
+
+
+
+
+
+
+# Set all interfaces to loose mode (2)
+
+echo 2 > /proc/sys/net/ipv4/conf/wgclient1/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/eth0/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/eth1/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/br-lan/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/lo/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/apcli0/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/apclix0/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/ra0/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/ra1/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/rax0/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/rax1/rp_filter
+
+echo 2 > /proc/sys/net/ipv4/conf/all/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/default/rp_filter
 
 
 
