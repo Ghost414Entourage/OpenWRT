@@ -296,6 +296,20 @@ iptables -D INPUT -p udp --dport 1:21 -j DROP
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+rp_filter stands for Reverse Path Filtering, a Linux kernel security feature that helps prevent IP spoofing.
+It checks whether the source IP address of an incoming packet is reachable via the same interface it came in on.
+
+It's a defense against spoofed packets — attackers trying to send packets that pretend to come from a trusted source, usually to bypass security checks or perform attacks (like DDoS, MITM, etc.).
+
+
+
+
+
+
+
+
+ls /proc/sys/net/ipv4/conf/
+
 
 
 
@@ -319,4 +333,120 @@ Value	Behavior
 
 Strict mode (1) drops packets if the return path doesn't match the incoming interface.
 Loose mode (2) checks if the source IP is reachable via any interface, not necessarily the one it came in on.
+
+
+
+
+
+
+temporarily (until reboot):
+
+echo 1 > /proc/sys/net/ipv4/conf/all/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/default/rp_filter
+for iface in /proc/sys/net/ipv4/conf/*/rp_filter; do
+    echo 1 > "$iface"
+done
+
+
+
+
+
+
+sudo nano /etc/sysctl.d/99-vpn-rpfilter.conf
+
+
+# VPN interface: use loose mode (to avoid breaking VPN)
+net.ipv4.conf.wgclient1.rp_filter = 2
+
+# Everything else: strict mode for anti-spoofing
+net.ipv4.conf.eth0.rp_filter = 1
+net.ipv4.conf.eth1.rp_filter = 1
+net.ipv4.conf.br-lan.rp_filter = 1
+net.ipv4.conf.lo.rp_filter = 1
+net.ipv4.conf.apcli0.rp_filter = 1
+net.ipv4.conf.apclix0.rp_filter = 1
+net.ipv4.conf.ra0.rp_filter = 1
+net.ipv4.conf.ra1.rp_filter = 1
+net.ipv4.conf.rax0.rp_filter = 1
+net.ipv4.conf.rax1.rp_filter = 1
+
+# Optional: also set all/default
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+
+sysctl --system
+
+
+
+
+
+
+
+
+sudo tee -a /etc/sysctl.conf > /dev/null << EOF
+
+# Reverse Path Filtering Configuration
+
+# VPN interface: use loose mode to avoid breaking VPN
+net.ipv4.conf.wgclient1.rp_filter = 2
+
+# All other interfaces: use strict mode for anti-spoofing
+net.ipv4.conf.eth0.rp_filter = 1
+net.ipv4.conf.eth1.rp_filter = 1
+net.ipv4.conf.br-lan.rp_filter = 1
+net.ipv4.conf.lo.rp_filter = 1
+net.ipv4.conf.apcli0.rp_filter = 1
+net.ipv4.conf.apclix0.rp_filter = 1
+net.ipv4.conf.ra0.rp_filter = 1
+net.ipv4.conf.ra1.rp_filter = 1
+net.ipv4.conf.rax0.rp_filter = 1
+net.ipv4.conf.rax1.rp_filter = 1
+
+# Also set 'all' and 'default' to strict
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+
+EOF
+
+
+
+
+sudo sysctl --system
+
+
+
+
+# VPN interface: use loose mode (to avoid breaking VPN)
+echo 2 > /proc/sys/net/ipv4/conf/wgclient1/rp_filter
+
+# Everything else: strict mode for anti-spoofing
+echo 1 > /proc/sys/net/ipv4/conf/eth0/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/eth1/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/br-lan/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/lo/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/apcli0/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/apclix0/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/ra0/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/ra1/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/rax0/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/rax1/rp_filter
+
+# Optional: also set all/default
+echo 1 > /proc/sys/net/ipv4/conf/all/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/default/rp_filter
+
+
+
+
+
+
+
+https://docs.kernel.org/networking/ip-sysctl.html
+
+
+
+
+
+
 
