@@ -16,4 +16,5 @@ iptables -D INPUT <line-number>
 
 
 
+iptables -t raw -L PREROUTING -n -v --line-numbers
 
