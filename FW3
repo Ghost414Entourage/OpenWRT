@@ -298,3 +298,13 @@ iptables -D INPUT -p udp --dport 1:21 -j DROP
 
 
 
+
+Each network interface has its own rp_filter setting. There are also global settings.
+
+Paths:
+/proc/sys/net/ipv4/conf/all/rp_filter – applies a global setting
+/proc/sys/net/ipv4/conf/default/rp_filter – default for new interfaces
+/proc/sys/net/ipv4/conf/<interface>/rp_filter – per-interface setting
+
+
+
