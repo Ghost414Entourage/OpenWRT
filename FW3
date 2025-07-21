@@ -308,3 +308,15 @@ Paths:
 
 
 
+
+
+
+Value	Behavior
+0	No source validation (disabled)
+1	Strict mode (recommended for security)
+2	Loose mode (useful in asymmetric routing)
+
+
+Strict mode (1) drops packets if the return path doesn't match the incoming interface.
+Loose mode (2) checks if the source IP is reachable via any interface, not necessarily the one it came in on.
+
