@@ -30,4 +30,4 @@ Christopher McCandless: You know, hypocrites, politicians, pricks.
 
 https://www.youtube.com/watch?v=kmjfilGfa0w
 
-
+Pure, simple, and true. 
