@@ -22,6 +22,8 @@ For example, some groups claim to prioritize Americans first or focus on student
 
 Does Netflix require you to complete 80 hours of community service after you’ve paid your subscription fee? Why does my netflix account require a password when oversea loans dont need one to access my subscription? 
 
+stop saying you want to run this country like a business..................................................................................................................................................................................................... because you don't. 
+
 
 
 Wayne Westerberg: Yeah. What are you doing when we're there? Now you're in the wild, what are we doing?
