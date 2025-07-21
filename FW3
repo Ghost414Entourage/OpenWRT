@@ -18,3 +18,117 @@ iptables -D INPUT <line-number>
 
 iptables -t raw -L PREROUTING -n -v --line-numbers
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+iptables -t raw -A PREROUTING -p tcp --dport 1:21 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 1:21 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 23:52 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 23:52 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 54:66 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 54:66 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 69:79 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 69:79 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 81:442 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 81:442 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 444:499 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 444:499 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 501:1079 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 501:1079 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 1081:1193 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 1081:1193 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 1195:4499 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 1195:4499 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 4501:7546 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 4501:7546 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 7548:10000 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 7548:10000 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 10001:30000 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 10001:30000 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 30001:40000 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 30001:40000 -j DROP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+iptables -t raw -D PREROUTING -p tcp --dport 1:21 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 1:21 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 23:52 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 23:52 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 54:66 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 54:66 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 69:79 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 69:79 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 81:442 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 81:442 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 444:499 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 444:499 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 501:1079 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 501:1079 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 1081:1193 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 1081:1193 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 1195:4499 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 1195:4499 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 4501:7546 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 4501:7546 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 7548:10000 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 7548:10000 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 10001:30000 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 10001:30000 -j DROP
+
+iptables -t raw -D PREROUTING -p tcp --dport 30001:40000 -j DROP
+iptables -t raw -D PREROUTING -p udp --dport 30001:40000 -j DROP
+
