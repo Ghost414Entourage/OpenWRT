@@ -563,6 +563,21 @@ echo 2 > /proc/sys/net/ipv4/ip_dynaddr
 
 
 
+# Enable IP forwarding
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# Enable loose reverse path filtering
+echo 2 > /proc/sys/net/ipv4/conf/all/rp_filter
+
+# Enable proxy ARP
+echo 1 > /proc/sys/net/ipv4/conf/all/proxy_arp
+
+# Enable IP dynamic address updates
+echo 1 > /proc/sys/net/ipv4/ip_dynaddr
+
+
+
+
 
 
 
