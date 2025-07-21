@@ -29,5 +29,8 @@ Does Netflix require you to complete 80 hours of community service after you’v
 
 
 
+Everything you do in America is taxed, I am not complaining about those fees, but let me benefit from the wrap around services you provide people without a real id or passport. 
+
+
 
 
