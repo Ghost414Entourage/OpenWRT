@@ -192,11 +192,16 @@ iptables -t raw -D PREROUTING -p udp --dport 30001:40000 -j DROP
 
 
 
+iptables -L INPUT -n -v --line-numbers
 
 
 
 
-# Existing ranges
+
+
+
+
+
 iptables -A INPUT -p tcp --dport 1:21 -j DROP
 iptables -A INPUT -p udp --dport 1:21 -j DROP
 
@@ -256,7 +261,7 @@ iptables -A INPUT -p udp --dport 30001:40000 -j DROP
 
 
 
-# Remove TCP DROP rules
+
 iptables -D INPUT -p tcp --dport 30001:40000 -j DROP
 iptables -D INPUT -p udp --dport 30001:40000 -j DROP
 
