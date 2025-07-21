@@ -1,3 +1,24 @@
+cat /proc/net/ip_tables_targets
+
+
+
+cat /proc/net/ip_tables_names
+
+
+
+cat /proc/net/ip6_tables_names
+
+
+
+
+
+
+
+
+
+
+
+
 iptables -L INPUT -n -v --line-numbers
 
 
