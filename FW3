@@ -5,3 +5,15 @@ iptables -L INPUT -n -v --line-numbers
 
 
 
+iptables -t raw -L PREROUTING -n --line-numbers
+
+
+iptables -t raw -D PREROUTING <line-number>
+
+iptables -D INPUT <line-number>
+
+
+
+
+
+
