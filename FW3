@@ -554,6 +554,14 @@ echo 2 > /proc/sys/net/ipv4/conf/default/rp_filter
 
 
 
+echo 2 > /proc/sys/net/ipv4/ip_forward
+echo 2 > /proc/sys/net/ipv4/conf/all/rp_filter
+echo 2 > /proc/sys/net/ipv4/conf/all/proxy_arp
+echo 2 > /proc/sys/net/ipv4/ip_dynaddr
+
+
+
+
 
 
 
