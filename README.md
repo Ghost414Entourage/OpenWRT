@@ -34,7 +34,7 @@ Wayne Westerberg: [coughs] Society! Society!
 
 --------------------> Christopher McCandless: Society, man! You know, society! Cause, you know what I don't understand? I don't understand why people, why every fucking person is so bad to each other so fucking often. It doesn't make sense to me. Judgment. Control. All that, the whole spectrum. Well, it just...
 Wayne Westerberg: What "people" we talking about?
-Christopher McCandless: You know, parents, hypocrites, politicians, pricks.
+Christopher McCandless: You know, hypocrites, politicians, pricks.
 
 
 
