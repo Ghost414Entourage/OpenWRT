@@ -299,6 +299,17 @@ https://docs.kernel.org/networking/ip-sysctl.html
 
 
 
+
+rp_filter - INTEGER
+0 - No source validation.
+1 - Strict mode as defined in RFC3704 Strict Reverse Path Each incoming packet is tested against the FIB and if the interface is not the best reverse path the packet check will fail. By default failed packets are discarded.
+2 - Loose mode as defined in RFC3704 Loose Reverse Path Each incoming packet’s source address is also tested against the FIB and if the source address is not reachable via any interface the packet check will fail.
+
+
+
+
+
+
 rp_filter stands for Reverse Path Filtering, a Linux kernel security feature that helps prevent IP spoofing.
 It checks whether the source IP address of an incoming packet is reachable via the same interface it came in on.
 
@@ -534,6 +545,11 @@ echo 2 > /proc/sys/net/ipv4/conf/rax1/rp_filter
 
 echo 2 > /proc/sys/net/ipv4/conf/all/rp_filter
 echo 2 > /proc/sys/net/ipv4/conf/default/rp_filter
+
+
+
+
+
 
 
 
