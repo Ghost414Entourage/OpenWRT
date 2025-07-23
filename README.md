@@ -1,5 +1,6 @@
 Fuck you tree
 
+![WsZT5hFP95f330NvAZP0sJCuU8BQfO](https://github.com/user-attachments/assets/cefe5410-def6-4d34-8433-d73c4a690149)
 
 
 
