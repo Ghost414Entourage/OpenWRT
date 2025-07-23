@@ -1,3 +1,7 @@
+https://www.youtube.com/watch?v=Gn0_2zmb95k
+
+
+
 # OpenWRT
 Into the Wild
 
