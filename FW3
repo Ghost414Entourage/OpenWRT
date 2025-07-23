@@ -59,6 +59,17 @@ iptables -t raw -L PREROUTING -n -v --line-numbers
 
 
 
+iptables -t raw -L PREROUTING -n -v --line-numbers | awk 'NR<=2 || ($2+0) > 0'
+
+
+
+
+
+iptables -t raw -L PREROUTING -n -v --line-numbers | awk '
+NR<=2 { print; next }
+$2 > 0 { print }
+'
+
 
 
 
