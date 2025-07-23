@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Output file
+OUTPUT_FILE="iptables_drop_all_ports.sh"
+
+# Start fresh
+echo "#!/bin/bash" > "$OUTPUT_FILE"
+echo "# Generated iptables rules to drop all TCP/UDP ports in raw PREROUTING" >> "$OUTPUT_FILE"
+
+# Generate rules for ports 1 to 65535
+for port in $(seq 1 65535); do
+  echo "iptables -t raw -A PREROUTING -p tcp --dport $port -j DROP" >> "$OUTPUT_FILE"
+  echo "iptables -t raw -A PREROUTING -p udp --dport $port -j DROP" >> "$OUTPUT_FILE"
+done
+
+# Make the output script executable
+chmod +x "$OUTPUT_FILE"
+
+echo "Rules saved to $OUTPUT_FILE"
+
+
+
+
+
+
+
+
+chmod +x generate_iptables_rules.sh
+./generate_iptables_rules.sh
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#!/bin/bash
+
+# Output file
+OUTPUT_FILE="iptables_remove_all_ports.sh"
+
+# Start fresh
+echo "#!/bin/bash" > "$OUTPUT_FILE"
+echo "# Removes iptables rules for all TCP/UDP ports in raw PREROUTING" >> "$OUTPUT_FILE"
+
+# Generate removal rules
+for port in $(seq 1 65535); do
+  echo "iptables -t raw -D PREROUTING -p tcp --dport $port -j DROP" >> "$OUTPUT_FILE"
+  echo "iptables -t raw -D PREROUTING -p udp --dport $port -j DROP" >> "$OUTPUT_FILE"
+done
+
+# Make the output script executable
+chmod +x "$OUTPUT_FILE"
+
+echo "Removal rules saved to $OUTPUT_FILE"
+
+
+
+
+
+
+
+chmod +x remove_iptables_rules.sh
+./remove_iptables_rules.sh
+
+
+
+
