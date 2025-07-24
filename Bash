@@ -1,0 +1,7 @@
+opkg install bash
+
+
+
+which bash
+
+
