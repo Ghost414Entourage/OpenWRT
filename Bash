@@ -5,3 +5,83 @@ opkg install bash
 which bash
 
 
+
+
+
+
+
+
+
+cat << 'EOF' > drop_ports.sh
+#!/bin/sh
+
+# Define excluded ports
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+
+# Add range 30001 to 61001 to excluded ports
+for port in $(seq 30001 61001); do
+  EXCLUDED_PORTS="$EXCLUDED_PORTS $port"
+done
+
+echo "Starting to add DROP rules to iptables..."
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+TOTAL_PORTS=65535
+RULES_ADDED=0
+BAR_WIDTH=20
+
+draw_progress_bar() {
+  percent=$1
+  filled=$((percent * BAR_WIDTH / 100))
+  empty=$((BAR_WIDTH - filled))
+
+  bar=""
+  i=0
+  while [ $i -lt $filled ]; do
+    bar="${bar}#"
+    i=$((i + 1))
+  done
+  i=0
+  while [ $i -lt $empty ]; do
+    bar="${bar}-"
+    i=$((i + 1))
+  done
+
+  printf "Progress: [%s] %s%%  Rules: %s\n" "$bar" "$percent" "$RULES_ADDED"
+}
+
+for port in $(seq 1 $TOTAL_PORTS); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+    RULES_ADDED=$((RULES_ADDED + 2))
+  fi
+
+  if [ $((port % 10)) -eq 0 ]; then
+    PERCENT=$((port * 100 / TOTAL_PORTS))
+    draw_progress_bar "$PERCENT"
+  fi
+done
+
+draw_progress_bar 100
+echo "Done. Total rules added: $RULES_ADDED"
+EOF
+
+
+
+
+
+
+
+
+chmod +x drop_ports.sh
+./drop_ports.sh
+
