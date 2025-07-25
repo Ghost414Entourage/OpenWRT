@@ -8,16 +8,12 @@ Fuck you tree
 
 
 # OpenWRT
-Into the Wild
+Into the Wild ----> happiness is only real when shared..........
 
 
 https://www.youtube.com/watch?v=5REHIkn5kRQ 
 
 
-
-
-
-----> happiness is only real when shared..........
 
 
 
