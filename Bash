@@ -85,3 +85,350 @@ EOF
 chmod +x drop_ports.sh
 ./drop_ports.sh
 
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=1
+END_PORT=1000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=1001
+END_PORT=2000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=2001
+END_PORT=3000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=3001
+END_PORT=4000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=4001
+END_PORT=5000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=5001
+END_PORT=6000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=6001
+END_PORT=7000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=7001
+END_PORT=8000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=8001
+END_PORT=9000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+#!/bin/sh
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=9001
+END_PORT=10000
+
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    if [ "$p" -eq "$1" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo "Starting to add DROP rules to iptables for ports $START_PORT to $END_PORT..."
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    iptables -t raw -A PREROUTING -p tcp --dport "$port" -j DROP
+    iptables -t raw -A PREROUTING -p udp --dport "$port" -j DROP
+  fi
+done
+
+echo "Done adding DROP rules for ports $START_PORT to $END_PORT."
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
