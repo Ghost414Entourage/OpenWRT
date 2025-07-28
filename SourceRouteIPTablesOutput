@@ -3,6 +3,20 @@ iptables -t raw -L -v --line-numbers
 iptables -t raw -L OUTPUT -v -n --line-numbers
 
 
+iptables -t raw -D OUTPUT 2
+
+
+
+
+iptables -t raw -I OUTPUT -s 192.168.1.65 -j RETURN
+
+
+iptables -t raw -A OUTPUT -s 10.100.0.0/16 -j RETURN
+
+
+iptables -t raw -A OUTPUT -s 192.168.8.0/24 -j RETURN
+
+
 
 
 iptables -t raw -A OUTPUT -j DROP
