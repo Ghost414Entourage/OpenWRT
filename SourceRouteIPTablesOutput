@@ -1,3 +1,5 @@
+iptables -t raw -L -v --line-numbers
+
 iptables -t raw -L OUTPUT -v -n --line-numbers
 
 
