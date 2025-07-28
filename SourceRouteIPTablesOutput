@@ -3,3 +3,5 @@ iptables -t raw -L OUTPUT -v -n --line-numbers
 
 
 
+iptables -t raw -A OUTPUT -j DROP
+
