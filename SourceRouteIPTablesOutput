@@ -1,0 +1,5 @@
+iptables -t raw -L OUTPUT -v -n --line-numbers
+
+
+
+
