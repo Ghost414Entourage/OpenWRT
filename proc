@@ -1,0 +1,4 @@
+cat /proc/net/ip_tables_names
+
+
+
