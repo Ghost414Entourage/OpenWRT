@@ -5,3 +5,7 @@ cat /proc/net/ip_tables_names
 cat /proc/net/ip_tables_targets
 
 
+cat /proc/net/dev
+
+
+
