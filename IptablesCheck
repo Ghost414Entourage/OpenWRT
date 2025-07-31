@@ -325,5 +325,233 @@ iptables -I INPUT -i eth0 -d 255.255.255.255/32 -j DROP
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+# IANA IPv4 Special-Purpose Address Blocks — MANGLE PREROUTING (-s and -d)
+
+# 0.0.0.0/8 — "This network"
+iptables -t mangle -I PREROUTING -i eth0 -s 0.0.0.0/8 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 0.0.0.0/8 -j DROP
+
+# 0.0.0.0/32 — "This host on this network"
+iptables -t mangle -I PREROUTING -i eth0 -s 0.0.0.0/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 0.0.0.0/32 -j DROP
+
+# 10.0.0.0/8 — Private-Use
+iptables -t mangle -I PREROUTING -i eth0 -s 10.0.0.0/8 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 10.0.0.0/8 -j DROP
+
+# 100.64.0.0/10 — Shared Address Space
+iptables -t mangle -I PREROUTING -i eth0 -s 100.64.0.0/10 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 100.64.0.0/10 -j DROP
+
+# 127.0.0.0/8 — Loopback
+iptables -t mangle -I PREROUTING -i eth0 -s 127.0.0.0/8 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 127.0.0.0/8 -j DROP
+
+# 169.254.0.0/16 — Link Local
+iptables -t mangle -I PREROUTING -i eth0 -s 169.254.0.0/16 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 169.254.0.0/16 -j DROP
+
+# 172.16.0.0/12 — Private-Use
+iptables -t mangle -I PREROUTING -i eth0 -s 172.16.0.0/12 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 172.16.0.0/12 -j DROP
+
+# 192.0.0.0/24 — IETF Protocol Assignments
+iptables -t mangle -I PREROUTING -i eth0 -s 192.0.0.0/24 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.0.0.0/24 -j DROP
+
+# 192.0.0.0/29 — IPv4 Service Continuity
+iptables -t mangle -I PREROUTING -i eth0 -s 192.0.0.0/29 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.0.0.0/29 -j DROP
+
+# 192.0.0.8/32 — Dummy Address
+iptables -t mangle -I PREROUTING -i eth0 -s 192.0.0.8/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.0.0.8/32 -j DROP
+
+# 192.0.0.9/32 — PCP Anycast
+iptables -t mangle -I PREROUTING -i eth0 -s 192.0.0.9/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.0.0.9/32 -j DROP
+
+# 192.0.0.10/32 — TURN Anycast
+iptables -t mangle -I PREROUTING -i eth0 -s 192.0.0.10/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.0.0.10/32 -j DROP
+
+# 192.0.0.170/32, 192.0.0.171/32 — NAT64/DNS64
+iptables -t mangle -I PREROUTING -i eth0 -s 192.0.0.170/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.0.0.170/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -s 192.0.0.171/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.0.0.171/32 -j DROP
+
+# 192.0.2.0/24 — TEST-NET-1
+iptables -t mangle -I PREROUTING -i eth0 -s 192.0.2.0/24 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.0.2.0/24 -j DROP
+
+# 192.31.196.0/24 — AS112
+iptables -t mangle -I PREROUTING -i eth0 -s 192.31.196.0/24 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.31.196.0/24 -j DROP
+
+# 192.52.193.0/24 — AMT
+iptables -t mangle -I PREROUTING -i eth0 -s 192.52.193.0/24 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.52.193.0/24 -j DROP
+
+# 192.88.99.0/24 — Deprecated 6to4 Anycast
+iptables -t mangle -I PREROUTING -i eth0 -s 192.88.99.0/24 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.88.99.0/24 -j DROP
+
+# 192.88.99.2/32 — 6a44-relay Anycast
+iptables -t mangle -I PREROUTING -i eth0 -s 192.88.99.2/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.88.99.2/32 -j DROP
+
+# 192.168.0.0/16 — Private-Use
+iptables -t mangle -I PREROUTING -i eth0 -s 192.168.0.0/16 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.168.0.0/16 -j DROP
+
+# 192.175.48.0/24 — AS112 Direct Delegation
+iptables -t mangle -I PREROUTING -i eth0 -s 192.175.48.0/24 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 192.175.48.0/24 -j DROP
+
+# 198.18.0.0/15 — Benchmarking
+iptables -t mangle -I PREROUTING -i eth0 -s 198.18.0.0/15 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 198.18.0.0/15 -j DROP
+
+# 198.51.100.0/24 — TEST-NET-2
+iptables -t mangle -I PREROUTING -i eth0 -s 198.51.100.0/24 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 198.51.100.0/24 -j DROP
+
+# 203.0.113.0/24 — TEST-NET-3
+iptables -t mangle -I PREROUTING -i eth0 -s 203.0.113.0/24 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 203.0.113.0/24 -j DROP
+
+# 240.0.0.0/4 — Reserved
+iptables -t mangle -I PREROUTING -i eth0 -s 240.0.0.0/4 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 240.0.0.0/4 -j DROP
+
+# 255.255.255.255/32 — Limited Broadcast
+iptables -t mangle -I PREROUTING -i eth0 -s 255.255.255.255/32 -j DROP
+iptables -t mangle -I PREROUTING -i eth0 -d 255.255.255.255/32 -j DROP
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+# 0.0.0.0/8 — "This network"
+iptables -t filter -I INPUT -i eth0 -s 0.0.0.0/8 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 0.0.0.0/8 -j DROP
+
+# 0.0.0.0/32 — "Unspecified"
+iptables -t filter -I INPUT -i eth0 -s 0.0.0.0/32 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 0.0.0.0/32 -j DROP
+
+# 10.0.0.0/8 — Private Use
+iptables -t filter -I INPUT -i eth0 -s 10.0.0.0/8 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 10.0.0.0/8 -j DROP
+
+# 100.64.0.0/10 — Shared Address Space
+iptables -t filter -I INPUT -i eth0 -s 100.64.0.0/10 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 100.64.0.0/10 -j DROP
+
+# 127.0.0.0/8 — Loopback
+iptables -t filter -I INPUT -i eth0 -s 127.0.0.0/8 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 127.0.0.0/8 -j DROP
+
+# 169.254.0.0/16 — Link-Local
+iptables -t filter -I INPUT -i eth0 -s 169.254.0.0/16 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 169.254.0.0/16 -j DROP
+
+# 172.16.0.0/12 — Private Use
+iptables -t filter -I INPUT -i eth0 -s 172.16.0.0/12 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 172.16.0.0/12 -j DROP
+
+# 192.0.0.0/24 — IETF Protocol Assignments
+iptables -t filter -I INPUT -i eth0 -s 192.0.0.0/24 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.0.0.0/24 -j DROP
+
+# 192.0.0.0/29 — IPv4 Service Continuity
+iptables -t filter -I INPUT -i eth0 -s 192.0.0.0/29 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.0.0.0/29 -j DROP
+
+# 192.0.0.8/32 — Dummy Address
+iptables -t filter -I INPUT -i eth0 -s 192.0.0.8/32 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.0.0.8/32 -j DROP
+
+# 192.0.0.9/32 — PCP Anycast
+iptables -t filter -I INPUT -i eth0 -s 192.0.0.9/32 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.0.0.9/32 -j DROP
+
+# 192.0.0.10/32 — TURN Anycast
+iptables -t filter -I INPUT -i eth0 -s 192.0.0.10/32 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.0.0.10/32 -j DROP
+
+# 192.0.0.170/32 — NAT64 Discovery
+iptables -t filter -I INPUT -i eth0 -s 192.0.0.170/32 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.0.0.170/32 -j DROP
+
+# 192.0.0.171/32 — DNS64 Discovery
+iptables -t filter -I INPUT -i eth0 -s 192.0.0.171/32 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.0.0.171/32 -j DROP
+
+# 192.0.2.0/24 — TEST-NET-1
+iptables -t filter -I INPUT -i eth0 -s 192.0.2.0/24 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.0.2.0/24 -j DROP
+
+# 192.31.196.0/24 — AS112 Service
+iptables -t filter -I INPUT -i eth0 -s 192.31.196.0/24 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.31.196.0/24 -j DROP
+
+# 192.52.193.0/24 — AMT Relay
+iptables -t filter -I INPUT -i eth0 -s 192.52.193.0/24 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.52.193.0/24 -j DROP
+
+# 192.88.99.0/24 — Deprecated 6to4 Relay
+iptables -t filter -I INPUT -i eth0 -s 192.88.99.0/24 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.88.99.0/24 -j DROP
+
+# 192.88.99.2/32 — 6a44 Relay Anycast
+iptables -t filter -I INPUT -i eth0 -s 192.88.99.2/32 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.88.99.2/32 -j DROP
+
+# 192.168.0.0/16 — Private Use
+iptables -t filter -I INPUT -i eth0 -s 192.168.0.0/16 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.168.0.0/16 -j DROP
+
+# 192.175.48.0/24 — Direct Delegation (AS112)
+iptables -t filter -I INPUT -i eth0 -s 192.175.48.0/24 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 192.175.48.0/24 -j DROP
+
+# 198.18.0.0/15 — Benchmark Testing
+iptables -t filter -I INPUT -i eth0 -s 198.18.0.0/15 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 198.18.0.0/15 -j DROP
+
+# 198.51.100.0/24 — TEST-NET-2
+iptables -t filter -I INPUT -i eth0 -s 198.51.100.0/24 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 198.51.100.0/24 -j DROP
+
+# 203.0.113.0/24 — TEST-NET-3
+iptables -t filter -I INPUT -i eth0 -s 203.0.113.0/24 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 203.0.113.0/24 -j DROP
+
+# 240.0.0.0/4 — Reserved for future use
+iptables -t filter -I INPUT -i eth0 -s 240.0.0.0/4 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 240.0.0.0/4 -j DROP
+
+# 255.255.255.255/32 — Broadcast
+iptables -t filter -I INPUT -i eth0 -s 255.255.255.255/32 -j DROP
+iptables -t filter -I INPUT -i eth0 -d 255.255.255.255/32 -j DROP
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
 
 
