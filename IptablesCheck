@@ -72,7 +72,7 @@ iptables -I INPUT -i eth0 -d 127.0.0.0/8 -j DROP      # Loopback
 https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
 
 
-
+ iptables -L INPUT -v -n --line-numbers
 
 
 
