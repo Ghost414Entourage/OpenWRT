@@ -65,5 +65,59 @@ iptables -A FORWARD -i br-lan -j DROP
 
 
 
+sudo iptables -L FORWARD -v -n --line-numbers
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+# 1. Allow DHCP broadcasts (raw PREROUTING)
+iptables -t raw -A PREROUTING -p udp --sport 67:68 --dport 67:68 -j ACCEPT
+
+# Allow DHCP requests from clients (raw PREROUTING)
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 68 --dport 67 -j ACCEPT
+iptables -t raw -A PREROUTING -o br-lan -p udp --sport 67 --dport 68 -j ACCEPT
+
+# 2. Allow all from DHCP-assigned IPs (raw PREROUTING)
+iptables -t raw -A PREROUTING -s 192.168.8.100/30 -j ACCEPT
+iptables -t raw -A PREROUTING -s 192.168.8.104/29 -j ACCEPT
+iptables -t raw -A PREROUTING -s 192.168.8.112/28 -j ACCEPT
+iptables -t raw -A PREROUTING -s 192.168.8.128/26 -j ACCEPT
+iptables -t raw -A PREROUTING -s 192.168.8.192/27 -j ACCEPT
+iptables -t raw -A PREROUTING -s 192.168.8.224/28 -j ACCEPT
+iptables -t raw -A PREROUTING -s 192.168.8.240/29 -j ACCEPT
+iptables -t raw -A PREROUTING -s 192.168.8.248/30 -j ACCEPT
+iptables -t raw -A PREROUTING -s 192.168.8.252/30 -j ACCEPT
+
+# 3. Drop everything else from the LAN if not from DHCP pool (raw PREROUTING)
+iptables -t raw -A PREROUTING -i br-lan -j DROP
+
+# Additional interface-based rules (raw PREROUTING)
+iptables -t raw -A PREROUTING -i br-lan -s 192.168.8.100/30 -j ACCEPT
+iptables -t raw -A PREROUTING -i br-lan -s 192.168.8.104/29 -j ACCEPT
+iptables -t raw -A PREROUTING -i br-lan -s 192.168.8.112/28 -j ACCEPT
+iptables -t raw -A PREROUTING -i br-lan -s 192.168.8.128/26 -j ACCEPT
+iptables -t raw -A PREROUTING -i br-lan -s 192.168.8.192/27 -j ACCEPT
+iptables -t raw -A PREROUTING -i br-lan -s 192.168.8.224/28 -j ACCEPT
+iptables -t raw -A PREROUTING -i br-lan -s 192.168.8.240/29 -j ACCEPT
+iptables -t raw -A PREROUTING -i br-lan -s 192.168.8.248/31 -j ACCEPT
+
+
+
+
+
+
+
+sudo iptables -t raw -L PREROUTING -v -n --line-numbers
+
+
 
 
