@@ -1,0 +1,63 @@
+# 1. Allow DHCP broadcasts (as in your book)
+iptables -A INPUT -p udp --sport 67:68 --dport 67:68 -j ACCEPT
+iptables -A OUTPUT -p udp --sport 67:68 --dport 67:68 -j ACCEPT
+
+# 2. Allow all from DHCP-assigned IPs (e.g., 192.168.8.100–249)
+# You must split these into CIDR blocks or use ipset
+iptables -A FORWARD -s 192.168.8.100/30 -j ACCEPT
+iptables -A FORWARD -s 192.168.8.104/29 -j ACCEPT
+# ...continue for full pool
+
+# 3. Drop everything else from the LAN if not from DHCP pool
+iptables -A FORWARD -i br-lan -j DROP
+
+
+
+
+
+# Allow DHCP requests from clients (0.0.0.0:68 to 255.255.255.255:67)
+iptables -A INPUT -i br-lan -p udp --sport 68 --dport 67 -j ACCEPT
+iptables -A OUTPUT -o br-lan -p udp --sport 67 --dport 68 -j ACCEPT
+
+
+
+
+
+iptables -A FORWARD -i br-lan -s 192.168.8.100/30 -j ACCEPT
+iptables -A FORWARD -i br-lan -s 192.168.8.104/29 -j ACCEPT
+iptables -A FORWARD -i br-lan -s 192.168.8.112/28 -j ACCEPT
+iptables -A FORWARD -i br-lan -s 192.168.8.128/26 -j ACCEPT
+iptables -A FORWARD -i br-lan -s 192.168.8.192/27 -j ACCEPT
+iptables -A FORWARD -i br-lan -s 192.168.8.224/28 -j ACCEPT
+iptables -A FORWARD -i br-lan -s 192.168.8.240/29 -j ACCEPT
+iptables -A FORWARD -i br-lan -s 192.168.8.248/31 -j ACCEPT
+
+
+
+iptables -A FORWARD -i br-lan -j DROP
+
+
+
+
+
+
+
+
+
+
+
+| CIDR Block       | Covers IPs   | Count (Total IPs) |
+| ---------------- | ------------ | ----------------- |
+| 192.168.8.100/30 | .100 to .103 | 4                 |
+| 192.168.8.104/29 | .104 to .111 | 8                 |
+| 192.168.8.112/28 | .112 to .127 | 16                |
+| 192.168.8.128/26 | .128 to .191 | 64                |
+| 192.168.8.192/27 | .192 to .223 | 32                |
+| 192.168.8.224/28 | .224 to .239 | 16                |
+| 192.168.8.240/29 | .240 to .247 | 8                 |
+| 192.168.8.248/31 | .248 to .249 | 2                 |
+
+
+
+
+
