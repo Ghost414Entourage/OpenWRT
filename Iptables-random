@@ -1,0 +1,168 @@
+# DROP rules for destination ports on br-lan
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 993 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 993 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 1900 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 1900 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 2350 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 2350 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 5222 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 5222 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 5223 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 5223 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 5229 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 5229 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 5353 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 5353 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 8001 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 8001 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 15600 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 15600 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 19302 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 19302 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 3478 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 3478 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 3482 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 3482 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --dport 3484 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --dport 3484 -j DROP
+
+# DROP rules for source ports on br-lan
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 993 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 993 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 1900 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 1900 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 2350 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 2350 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 5222 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 5222 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 5223 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 5223 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 5229 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 5229 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 5353 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 5353 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 8001 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 8001 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 15600 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 15600 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 19302 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 19302 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 3478 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 3478 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 3482 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 3482 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p tcp --sport 3484 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -p udp --sport 3484 -j DROP
+
+# DROP rules for destination ports on eth0
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 993 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 993 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 1900 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 1900 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 2350 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 2350 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 5222 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 5222 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 5223 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 5223 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 5229 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 5229 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 5353 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 5353 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 8001 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 8001 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 15600 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 15600 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 19302 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 19302 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 3478 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 3478 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 3482 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 3482 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --dport 3484 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --dport 3484 -j DROP
+
+# DROP rules for source ports on eth0
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 993 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 993 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 1900 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 1900 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 2350 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 2350 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 5222 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 5222 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 5223 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 5223 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 5229 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 5229 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 5353 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 5353 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 8001 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 8001 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 15600 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 15600 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 19302 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 19302 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 3478 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 3478 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 3482 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 3482 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p tcp --sport 3484 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -p udp --sport 3484 -j DROP
+
+# DROP rules for destination ports (global)
+iptables -t raw -A PREROUTING -p tcp --dport 993 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 993 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 1900 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 1900 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 2350 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 2350 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 5222 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 5222 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 5223 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 5223 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 5229 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 5229 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 5353 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 5353 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 8001 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 8001 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 15600 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 15600 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 19302 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 19302 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 3478 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 3478 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 3482 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 3482 -j DROP
+iptables -t raw -A PREROUTING -p tcp --dport 3484 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 3484 -j DROP
+
+# DROP rules for source ports (global)
+iptables -t raw -A PREROUTING -p tcp --sport 993 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 993 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 1900 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 1900 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 2350 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 2350 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5222 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5222 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5223 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5223 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5229 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5229 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5353 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5353 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 8001 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 8001 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 15600 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 15600 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 19302 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 19302 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3478 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 3478 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3482 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 3482 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3484 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 3484 -j DROP
+
