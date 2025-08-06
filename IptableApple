@@ -1,0 +1,12 @@
+iptables -t raw -A PREROUTING -i br-lan -s 17.0.0.0/8 -j DROP
+iptables -t raw -A PREROUTING -i eth0   -s 17.0.0.0/8 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -d 17.0.0.0/8 -j DROP
+iptables -t raw -A PREROUTING -i eth0   -d 17.0.0.0/8 -j DROP
+
+
+iptables -t raw -A PREROUTING -s 17.0.0.0/8 -j DROP
+
+iptables -t raw -A PREROUTING -d 17.0.0.0/8 -j DROP
+
+
+
