@@ -70,5 +70,204 @@ https://support.apple.com/en-us/103229
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+# Flush existing rules in the PREROUTING chain of the RAW table
+iptables -t raw -F PREROUTING
+
+# Set a general policy to DROP for specific ports
+iptables -t raw -A PREROUTING -p tcp --dport 22 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 22 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 25 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 25 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 53 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 53 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 53 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 53 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 80 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 80 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 88 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 88 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 110 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 110 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 123 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 123 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 137 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 137 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 138 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 138 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 139 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 139 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 143 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 143 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 192 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 192 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 389 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 389 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 443 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 443 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 443 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 443 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 445 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 445 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 465 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 465 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 500 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 500 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 515 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 515 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 548 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 548 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 554 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 554 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 554 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 554 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 587 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 587 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 631 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 631 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 636 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 636 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 749 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 749 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 749 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 749 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 993 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 993 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 995 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 995 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 995 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 995 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 1900 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 1900 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 2197 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 2197 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 3031 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 3031 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3031 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 3031 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 3283 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 3283 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3283 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 3283 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 3284 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3284 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 3285 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3285 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 3478:3497 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 3478:3497 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 3689 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3689 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 3690 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 3690 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 3690 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 3690 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 4398 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 4398 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 4500 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 4500 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 5100 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5100 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 5223 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5223 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 5228 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5228 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 5297 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5297 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 5350 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5350 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 5351 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5351 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 5353 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5353 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 5900 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 5900 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 5900 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5900 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 5901:5902 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 5901:5902 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 8000:8999 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 8000:8999 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 9100 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 9100 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 9418 -j DROP
+iptables -t raw -A PREROUTING -p udp --dport 9418 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 9418 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 9418 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 16384:16403 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 16384:16403 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 16384:16387 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 16384:16387 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 16393:16402 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 16393:16402 -j DROP
+
+iptables -t raw -A PREROUTING -p udp --dport 16403:16472 -j DROP
+iptables -t raw -A PREROUTING -p udp --sport 16403:16472 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 42000:42999 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 42000:42999 -j DROP
+
+iptables -t raw -A PREROUTING -p tcp --dport 49152:65535 -j DROP
+iptables -t raw -A PREROUTING -p tcp --sport 49152:65535 -j DROP
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
