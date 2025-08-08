@@ -1,0 +1,35 @@
+which arptables
+
+
+
+lsmod | grep arp
+
+lsmod | grep arp_tables
+
+
+modprobe arptable_filter
+
+
+arptables -L -v
+
+
+
+arptables-save > /etc/arptables.rules
+
+arptables-restore < /etc/arptables.rules
+
+
+cat /tmp/dhcp.leases
+
+ip neigh show
+
+
+opkg install arp-scan
+arp-scan --interface=br-lan --localnet
+
+
+
+
+
+
+
