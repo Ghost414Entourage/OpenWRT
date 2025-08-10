@@ -33,3 +33,25 @@ arp-scan --interface=br-lan --localnet
 
 
 
+
+
+
+arptables -A INPUT  -i "br-lan" -s 192.168.8.1 -j ACCEPT
+arptables -A INPUT  -i "br-lan" -d 192.168.8.1 -j ACCEPT
+arptables -A OUTPUT -o "br-lan" -s 192.168.8.1 -j ACCEPT
+arptables -A OUTPUT -o "br-lan" -d 192.168.8.1 -j ACCEPT
+arptables -A INPUT  -i br-lan+ -s 192.168.8.1 -j ACCEPT
+arptables -A INPUT  -i br-lan+ -d 192.168.8.1 -j ACCEPT
+arptables -A OUTPUT -o br-lan+ -s 192.168.8.1 -j ACCEPT
+arptables -A OUTPUT -o br-lan+ -d 192.168.8.1 -j ACCEPT
+arptables -Z
+
+
+
+
+
+
+
+
+
+
