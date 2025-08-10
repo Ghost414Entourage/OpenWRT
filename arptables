@@ -50,6 +50,11 @@ arptables -Z
 
 
 
+arptables -P INPUT DROP
+arptables -P OUTPUT DROP
+arptables -P FORWARD DROP
+
+
 
 
 
