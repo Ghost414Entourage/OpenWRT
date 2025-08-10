@@ -57,6 +57,11 @@ arptables -P FORWARD DROP
 
 
 
+arptables -A INPUT -i 'br-lan' -d 192.168.8.1 --opcode Request -j ACCEPT
+arptables -A OUTPUT -o 'br-lan' -s 192.168.8.1 --opcode Reply -j ACCEPT
+
+
+
 
 
 
