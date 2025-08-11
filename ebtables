@@ -1,0 +1,12 @@
+opkg install ebstables 
+
+ebtables -L --Lc
+
+ebtables -L --Lc --Lc
+
+
+ebtables -P INPUT DROP
+ebtables -P OUTPUT DROP
+ebtables -P FORWARD DROP
+
+
