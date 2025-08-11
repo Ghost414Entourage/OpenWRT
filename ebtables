@@ -17,3 +17,23 @@ ebtables -A INPUT -d Multicast -j DROP
 ebtables -A OUTPUT -d Multicast -j DROP
 
 
+
+
+
+
+# Block inbound multicast MACs
+ebtables -A INPUT -d Multicast -j DROP
+# Block forwarded multicast MACs
+ebtables -A FORWARD -d Multicast -j DROP
+# Block outbound multicast MACs
+ebtables -A OUTPUT -d Multicast -j DROP
+
+# Block when source MAC is multicast
+ebtables -A INPUT -s Multicast -j DROP
+ebtables -A FORWARD -s Multicast -j DROP
+ebtables -A OUTPUT -s Multicast -j DROP
+
+
+
+
+
