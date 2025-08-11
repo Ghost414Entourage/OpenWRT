@@ -10,3 +10,10 @@ ebtables -P OUTPUT DROP
 ebtables -P FORWARD DROP
 
 
+
+
+
+ebtables -A INPUT -d Multicast -j DROP
+ebtables -A OUTPUT -d Multicast -j DROP
+
+
