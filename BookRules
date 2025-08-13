@@ -1,0 +1,18 @@
+If you receive a packet on your external, Internet-facing router interface addressed to 255.255.255.255, chances are that there is a misconfigured device or, more likely, that a potential attacker is attempting to probe your network.
+
+
+iptables -t raw -A PREROUTING -i br-lan -s 255.255.255.255 -j DROP
+iptables -t raw -A PREROUTING -i br-lan -d 255.255.255.255 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -s 255.255.255.255 -j DROP
+iptables -t raw -A PREROUTING -i eth0 -d 255.255.255.255 -j DROP
+iptables -t raw -A PREROUTING -s 255.255.255.255 -j DROP
+iptables -t raw -A PREROUTING -d 255.255.255.255 -j DROP
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
