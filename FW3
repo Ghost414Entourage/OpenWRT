@@ -57,10 +57,13 @@ iptables -D INPUT <line-number>
 
 iptables -t raw -L PREROUTING -n -v --line-numbers
 
+ip6tables -t raw -L PREROUTING -n -v --line-numbers
+
 
 
 iptables -t raw -L PREROUTING -n -v --line-numbers | awk 'NR<=2 || ($2+0) > 0'
 
+ip6tables -t raw -L PREROUTING -n -v --line-numbers | awk 'NR<=2 || ($2+0) > 0'
 
 
 
