@@ -1,0 +1,78 @@
+#!/bin/sh
+
+# Define excluded ports
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=1
+END_PORT=1000
+
+# Function to check if a port is excluded
+is_excluded() {
+  for p in $EXCLUDED_PORTS; do
+    [ "$p" -eq "$1" ] && return 0
+  done
+  return 1
+}
+
+# Function to draw a progress bar (POSIX-compatible)
+draw_progress_bar() {
+  local current=$1
+  local total=$2
+  local percent=$((current * 100 / total))
+  local bar_width=50
+  local filled=$((current * bar_width / total))
+  local bar="["
+  local i=0
+  while [ $i -lt $bar_width ]; do
+    if [ $i -lt $filled ]; then
+      bar="${bar}#"
+    else
+      bar="${bar} "
+    fi
+    i=$((i + 1))
+  done
+  bar="${bar}]"
+  printf "\rProgress: %s %d%%" "$bar" "$percent"
+}
+
+echo "Adding DROP rules with counters to nftables for ports $START_PORT to $END_PORT..."
+
+TOTAL_PORTS=$((END_PORT - START_PORT + 1))
+CURRENT_PORT=0
+
+for port in $(seq $START_PORT $END_PORT); do
+  if ! is_excluded "$port"; then
+    # DROP rules for destination ports on br-lan
+    nft add rule inet fw4 input iifname "br-lan" tcp dport $port counter drop
+    nft add rule inet fw4 input iifname "br-lan" udp dport $port counter drop
+    # DROP rules for source ports on br-lan
+    nft add rule inet fw4 input iifname "br-lan" tcp sport $port counter drop
+    nft add rule inet fw4 input iifname "br-lan" udp sport $port counter drop
+
+    # DROP rules for destination ports on eth0
+    nft add rule inet fw4 input iifname "eth0" tcp dport $port counter drop
+    nft add rule inet fw4 input iifname "eth0" udp dport $port counter drop
+    # DROP rules for source ports on eth0
+    nft add rule inet fw4 input iifname "eth0" tcp sport $port counter drop
+    nft add rule inet fw4 input iifname "eth0" udp sport $port counter drop
+
+    # DROP rules for destination ports (global input, any interface)
+    nft add rule inet fw4 input tcp dport $port counter drop
+    nft add rule inet fw4 input udp dport $port counter drop
+    # DROP rules for source ports (global input, any interface)
+    nft add rule inet fw4 input tcp sport $port counter drop
+    nft add rule inet fw4 input udp sport $port counter drop
+  fi
+  CURRENT_PORT=$((CURRENT_PORT + 1))
+  draw_progress_bar $CURRENT_PORT $TOTAL_PORTS
+done
+
+echo "\nDone adding DROP rules with counters for ports $START_PORT to $END_PORT."
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
