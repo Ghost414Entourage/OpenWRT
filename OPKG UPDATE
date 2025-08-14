@@ -122,7 +122,7 @@ opkg update
 opkg install openvpn-openssl
 opkg install ip-full
 opkg install luci-app-openvpn
-opkg install nano curl sudo 
+opkg install nano curl sudo bash
 
 
 
