@@ -27,4 +27,30 @@ addresses.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+What the passage is saying:
+SYN Flooding Problem:
+In TCP, when a client wants to connect, it sends a SYN packet.
+The server responds with a SYN-ACK and waits for the client’s ACK to complete the handshake.
+If an attacker sends many SYN requests but never replies, the server’s connection queue fills up, leading to resource starvation (legitimate users cannot connect).
 
+SYN Cookies as a Solution:
+SYN cookies prevent the queue from filling by not reserving resources until the client responds correctly.
+Instead of placing the connection in the queue immediately, the server responds with a specially crafted SYN cookie as the sequence number in the SYN-ACK.
+
+How SYN Cookies Work:
+The cookie is calculated using:
+The original sequence number in the SYN packet.
+Source and destination IP addresses and ports.
+A secret value known only to the server.
+When the client responds with an ACK, the server checks the cookie.
+If it matches the expected value, the connection is considered valid and resources are allocated.
+
+Enabling SYN Cookies:
+Some Linux kernels have it enabled by default.
+You can manually enable it with:
+
+echo 1 > /proc/sys/net/ipv4/tcp_syncookies
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
