@@ -175,3 +175,82 @@ nft -a list chain inet fw4 raw_prerouting | awk '/counter packets [1-9]/ {print 
 
 
 
+
+#!/bin/sh
+
+# Define excluded ports
+EXCLUDED_PORTS="22 53 67 68 80 443 1194"
+START_PORT=1
+END_PORT=1000
+
+# Function to draw a progress bar (POSIX-compatible)
+draw_progress_bar() {
+  local current=$1
+  local total=$2
+  local percent=$((current * 100 / total))
+  local bar_width=50
+  local filled=$((current * bar_width / total))
+  local bar="["
+  local i=0
+  while [ $i -lt $bar_width ]; do
+    if [ $i -lt $filled ]; then
+      bar="${bar}#"
+    else
+      bar="${bar} "
+    fi
+    i=$((i + 1))
+  done
+  bar="${bar}]"
+  printf "\rProgress: %s %d%%" "$bar" "$percent"
+}
+
+echo "Adding DROP rules with counters to nftables raw table for ports $START_PORT to $END_PORT..."
+
+# Create the raw_prerouting chain if it doesn't exist
+nft add chain inet fw4 raw_prerouting { type filter hook prerouting priority -300 \; }
+
+# Generate port list excluding EXCLUDED_PORTS
+PORT_LIST=$(seq $START_PORT $END_PORT | grep -v -w -E "$(echo $EXCLUDED_PORTS | tr ' ' '|')")
+
+# Use a single nft batch command to add all rules
+nft -f - <<EOF
+table inet fw4 {
+  chain raw_prerouting {
+    type filter hook prerouting priority -300;
+$(for port in $PORT_LIST; do
+    echo "    iifname \"br-lan\" tcp dport $port counter drop"
+    echo "    iifname \"br-lan\" udp dport $port counter drop"
+    echo "    iifname \"br-lan\" tcp sport $port counter drop"
+    echo "    iifname \"br-lan\" udp sport $port counter drop"
+    echo "    iifname \"eth0\" tcp dport $port counter drop"
+    echo "    iifname \"eth0\" udp dport $port counter drop"
+    echo "    iifname \"eth0\" tcp sport $port counter drop"
+    echo "    iifname \"eth0\" udp sport $port counter drop"
+    echo "    tcp dport $port counter drop"
+    echo "    udp dport $port counter drop"
+    echo "    tcp sport $port counter drop"
+    echo "    udp sport $port counter drop"
+done)
+  }
+}
+EOF
+
+# Simulate progress bar for the port range
+TOTAL_PORTS=$((END_PORT - START_PORT + 1))
+CURRENT_PORT=0
+for port in $(seq $START_PORT $END_PORT); do
+  CURRENT_PORT=$((CURRENT_PORT + 1))
+  draw_progress_bar $CURRENT_PORT $TOTAL_PORTS
+done
+
+echo "\nDone adding DROP rules with counters for ports $START_PORT to $END_PORT."
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
