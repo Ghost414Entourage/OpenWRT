@@ -1,3 +1,17 @@
+for chain in input forward output prerouting handle_reject syn_flood input_lan output_lan forward_lan helper_lan accept_from_lan accept_to_lan input_wan output_wan forward_wan accept_to_wan reject_from_wan reject_to_wan dstnat srcnat srcnat_wan raw_prerouting raw_output mangle_prerouting mangle_postrouting mangle_input mangle_output mangle_forward; do for proto in tcp udp; do nft add rule inet fw4 $chain $proto dport 443 counter drop; done; done
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #!/bin/sh
 
 # Define excluded ports
